@@ -15,3 +15,8 @@
 .pt--done { background:var(--sl-color-accent); color:#001; }
 /* inline code chips inside the No-TS-equivalent callout: dark text on light chip */
 .rs-only :not(pre) > code { background-color:#eceff4; color:#24292f; }
+.dp { margin:1rem 0; border:1px solid var(--sl-color-gray-5); border-radius:8px; overflow:hidden; }
+.dp__bar { display:flex; justify-content:space-between; align-items:center; gap:.5rem; padding:.35rem .6rem; background:var(--sl-color-gray-6); font-size:.8rem; }
+.dp__label { font-weight:600; opacity:.8; }
+.dp__open { font-size:.78rem; white-space:nowrap; }
+.dp__code { margin:0; border:0; border-radius:0; white-space:pre; overflow:auto; }

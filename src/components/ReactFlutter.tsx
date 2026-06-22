@@ -9,16 +9,19 @@ function CopyBtn({ text }: { text: string }) {
   );
 }
 
-export default function TsGo({ ts, go, tsTitle = 'TypeScript', goTitle = 'Rust' }: { ts: string; go: string; tsTitle?: string; goTitle?: string }) {
+export default function ReactFlutter(
+  { react, flutter, reactTitle = 'React', flutterTitle = 'Flutter' }:
+  { react: string; flutter: string; reactTitle?: string; flutterTitle?: string },
+) {
   return (
     <div class="tsgo">
       <div class="tsgo__col">
-        <header>{tsTitle}<CopyBtn text={ts} /></header>
-        <pre><code>{ts}</code></pre>
+        <header>{reactTitle}<CopyBtn text={react} /></header>
+        <pre><code>{react}</code></pre>
       </div>
       <div class="tsgo__col">
-        <header>{goTitle}<CopyBtn text={go} /></header>
-        <pre><code>{go}</code></pre>
+        <header>{flutterTitle}<CopyBtn text={flutter} /></header>
+        <pre><code>{flutter}</code></pre>
       </div>
     </div>
   );

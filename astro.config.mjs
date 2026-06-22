@@ -9,24 +9,24 @@ export default defineConfig({
   // GitHub Pages project site. Update `site` to your GitHub username and `base`
   // to your repo name if they differ.
   site: 'https://avetavos.github.io',
-  base: '/rust-for-typescript-developers',
+  base: '/flutter-for-react-developers',
   output: 'static',
   integrations: [starlight({
-      title: 'Rust for TypeScript Developers',
+      title: 'Flutter for React Developers',
       defaultLocale: 'en',
       locales: {
         en: { label: 'English', lang: 'en' },
         th: { label: 'ไทย', lang: 'th' },
       },
       customCss: ['./src/styles/custom.css'],
-      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/avetavos/rust-for-typescript-developers' }],
+      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/avetavos/flutter-for-react-developers' }],
       sidebar: [
         { label: 'Introduction & Setup', items: [{ autogenerate: { directory: 'intro' } }] },
-        { label: 'Rust 101 — Fundamentals', items: [{ autogenerate: { directory: 'rust-101' } }] },
-        { label: "Rust You Won't Find in TypeScript", items: [{ autogenerate: { directory: 'rs-only' } }] },
-        { label: 'Concurrency', items: [{ autogenerate: { directory: 'concurrency' } }] },
-        { label: 'Building an API with Axum', items: [{ autogenerate: { directory: 'api-axum' } }] },
-        { label: 'Advanced Rust', items: [{ autogenerate: { directory: 'advanced' } }] },
+        { label: 'React → Flutter: Same vs Different', items: [{ autogenerate: { directory: 'mental-model' } }] },
+        { label: 'Widgets & UI', items: [{ autogenerate: { directory: 'widgets' } }] },
+        { label: 'State & Lifecycle', items: [{ autogenerate: { directory: 'state-lifecycle' } }] },
+        { label: 'Handling Data', items: [{ autogenerate: { directory: 'data' } }] },
+        { label: 'Navigation & Routing', items: [{ autogenerate: { directory: 'navigation' } }] },
         { label: 'Tooling, Testing & Deployment', items: [{ autogenerate: { directory: 'tooling' } }] },
       ],
       }), preact()],

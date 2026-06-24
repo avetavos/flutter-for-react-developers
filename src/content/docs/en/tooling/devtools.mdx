@@ -4,6 +4,7 @@ description: 'Flutter DevTools widget inspector, performance profiler, and memor
 ---
 
 import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import Mermaid from '../../../../components/Mermaid.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
@@ -19,35 +20,44 @@ This is the equivalent of clicking the React DevTools browser extension icon —
 
 The conceptual mapping between React DevTools and Flutter DevTools is direct. Each tab in React DevTools has a counterpart in Flutter DevTools.
 
-export const devtoolsReact = `React DevTools panels:
-├─ Components tab
-│   ├─ Component tree (like DOM Inspector)
-│   ├─ Props viewer
-│   ├─ State viewer (hooks)
-│   └─ Context values
-└─ Profiler tab
-    ├─ Record renders
-    ├─ Flamegraph per commit
-    └─ Why did this render?`;
+export const devtoolsReactDiagram = `flowchart TB
+  root["React DevTools panels"]
+  comp["Components tab"]
+  prof["Profiler tab"]
+  root --> comp
+  root --> prof
+  comp --> ctree["Component tree (like DOM Inspector)"]
+  comp --> props["Props viewer"]
+  comp --> state["State viewer (hooks)"]
+  comp --> ctx["Context values"]
+  prof --> rec["Record renders"]
+  prof --> flame["Flamegraph per commit"]
+  prof --> why["Why did this render?"]`;
 
-export const devtoolsFlutter = `Flutter DevTools panels:
-├─ Widget Inspector
-│   ├─ Widget tree (like Components tab)
-│   ├─ Properties panel (widget fields)
-│   ├─ Layout Explorer (flexbox-like debug)
-│   └─ Select Widget Mode (click on screen)
-├─ Performance tab
-│   ├─ Frame timeline (60fps budget)
-│   ├─ UI thread vs Raster thread
-│   └─ Flame chart per frame
-├─ Memory tab
-│   ├─ Heap snapshot
-│   ├─ Allocation tracing
-│   └─ Leak detection
-└─ Network tab
-    └─ HTTP/HTTPS request log`;
+export const devtoolsFlutterDiagram = `flowchart TB
+  root["Flutter DevTools panels"]
+  insp["Widget Inspector"]
+  perf["Performance tab"]
+  mem["Memory tab"]
+  net["Network tab"]
+  root --> insp
+  root --> perf
+  root --> mem
+  root --> net
+  insp --> wtree["Widget tree (like Components tab)"]
+  insp --> pprops["Properties panel (widget fields)"]
+  insp --> layout["Layout Explorer (flexbox-like debug)"]
+  insp --> selmode["Select Widget Mode (click on screen)"]
+  perf --> ftl["Frame timeline (60fps budget)"]
+  perf --> threads["UI thread vs Raster thread"]
+  perf --> fchart["Flame chart per frame"]
+  mem --> heap["Heap snapshot"]
+  mem --> alloc["Allocation tracing"]
+  mem --> leak["Leak detection"]
+  net --> log["HTTP/HTTPS request log"]`;
 
-<ReactFlutter client:visible react={devtoolsReact} flutter={devtoolsFlutter} reactTitle="React DevTools" flutterTitle="Flutter DevTools" />
+<Mermaid code={devtoolsReactDiagram} title="React DevTools panels" />
+<Mermaid code={devtoolsFlutterDiagram} title="Flutter DevTools panels" />
 
 ## Widget Inspector
 

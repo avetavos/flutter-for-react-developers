@@ -4,6 +4,7 @@ description: 'ทุกอย่างคือ widget, widget tree, hot reload,
 ---
 
 import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import Mermaid from '../../../../components/Mermaid.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -17,17 +18,24 @@ import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
 ใน Flutter มี **ชั้นเดียวคือ widget** Layout, spacing, color, text, images, gesture detection, แม้แต่ตัว app เอง — ล้วนเป็น widget ไม่มี HTML ข้างใต้ Flutter วาดทุก pixel โดยตรง
 
-```
-React                          Flutter
-──────────────────────────     ────────────────────────────
-<App>                          MyApp (StatelessWidget)
-  <div className="card">         MaterialApp
-    <h2>Hello</h2>                 Scaffold
-    <button>Click</button>           Center
-  </div>                               Column
-</App>                                   Text('Hello')
-                                         ElevatedButton(...)
-```
+export const treeCompareDiagram = `flowchart TB
+  subgraph React
+    direction TB
+    RApp["&lt;App&gt;"] --> RDiv["&lt;div className='card'&gt;"]
+    RDiv --> RH2["&lt;h2&gt;Hello&lt;/h2&gt;"]
+    RDiv --> RBtn["&lt;button&gt;Click&lt;/button&gt;"]
+  end
+  subgraph Flutter
+    direction TB
+    FApp["MyApp (StatelessWidget)"] --> FMaterial["MaterialApp"]
+    FMaterial --> FScaffold["Scaffold"]
+    FScaffold --> FCenter["Center"]
+    FCenter --> FColumn["Column"]
+    FColumn --> FText["Text('Hello')"]
+    FColumn --> FBtn["ElevatedButton(...)"]
+  end`;
+
+<Mermaid code={treeCompareDiagram} title="React element tree vs Flutter widget tree" />
 
 ความลึกดูมากกว่าตอนแรก แต่ consistent — ไม่มีสอง mental model ที่ต้องสลับกัน
 

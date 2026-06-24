@@ -4,6 +4,7 @@ description: 'Install Flutter and configure your editor — mapped to npm, Vite,
 ---
 
 import Diff from '../../../../components/Diff.astro';
+import Mermaid from '../../../../components/Mermaid.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
@@ -53,17 +54,24 @@ flutter run
 
 ## Project structure vs React
 
-```
-my_app/
-├── lib/
-│   └── main.dart          # entry point  (≈ src/main.tsx)
-├── test/
-│   └── widget_test.dart   # tests        (≈ src/__tests__/)
-├── pubspec.yaml           # dependencies (≈ package.json)
-├── android/               # Android native shell
-├── ios/                   # iOS native shell
-└── web/                   # Web shell
-```
+export const projectStructureDiagram = `flowchart TB
+  root["my_app/"]
+  lib["lib/"]
+  mainDart["main.dart — entry point (≈ src/main.tsx)"]
+  test["test/"]
+  widgetTest["widget_test.dart — tests (≈ src/__tests__/)"]
+  pubspec["pubspec.yaml — dependencies (≈ package.json)"]
+  android["android/ — Android native shell"]
+  ios["ios/ — iOS native shell"]
+  web["web/ — Web shell"]
+  root --> lib --> mainDart
+  root --> test --> widgetTest
+  root --> pubspec
+  root --> android
+  root --> ios
+  root --> web`;
+
+<Mermaid code={projectStructureDiagram} title="Flutter project structure vs React" />
 
 Your Dart code lives entirely in `lib/`. You almost never touch `android/` or `ios/` unless you need platform-specific native code.
 

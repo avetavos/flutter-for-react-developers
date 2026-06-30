@@ -8,22 +8,22 @@ import preact from '@astrojs/preact';
 export default defineConfig({
   // GitHub Pages project site. Update `site` to your GitHub username and `base`
   // to your repo name if they differ.
-  site: 'https://flutter-for-react-developers.avetavos.com',
-  base: '/',
+  site: 'https://for-react-developers.avetavos.com',
+  base: '/flutter',
   output: 'static',
   integrations: [starlight({
       title: 'Flutter for React Developers',
       head: [
-        { tag: 'script', attrs: { type: 'module', src: '/enhance.js' } },
-        { tag: 'link', attrs: { rel: 'manifest', href: '/manifest.webmanifest' } },
-        { tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' } },
-        { tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/icon-192.png' } },
+        { tag: 'script', attrs: { type: 'module', src: '/flutter/enhance.js' } },
+        { tag: 'link', attrs: { rel: 'manifest', href: '/flutter/manifest.webmanifest' } },
+        { tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/flutter/apple-touch-icon.png' } },
+        { tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/flutter/icon-192.png' } },
         { tag: 'meta', attrs: { name: 'theme-color', content: '#02569B' } },
         { tag: 'meta', attrs: { name: 'mobile-web-app-capable', content: 'yes' } },
         { tag: 'meta', attrs: { name: 'apple-mobile-web-app-capable', content: 'yes' } },
         { tag: 'meta', attrs: { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' } },
         { tag: 'meta', attrs: { name: 'apple-mobile-web-app-title', content: "Flutter for React Developers" } },
-        { tag: 'script', content: "if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js',{scope:'/'}).catch(function(){})})}" },
+        { tag: 'script', content: "if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/flutter/sw.js',{scope:'/flutter/'}).catch(function(){})})}" },
       ],
       defaultLocale: 'en',
       locales: {

@@ -1,28 +1,28 @@
 {
-  "id": "/",
+  "id": "/flutter/",
   "name": "Flutter for React Developers",
   "short_name": "Flutter for React Developers",
-  "start_url": "/en/",
-  "scope": "/",
+  "start_url": "/flutter/en/",
+  "scope": "/flutter/",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#0d1117",
   "theme_color": "#02569B",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/flutter/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/flutter/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/flutter/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

@@ -3,7 +3,7 @@ title: 'Widget Testing'
 description: 'flutter test + testWidgets vs jest + React Testing Library — pumpWidget, WidgetTester, find, and expect mapped to render, screen, fireEvent.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
@@ -82,7 +82,7 @@ void main() {
   });
 }`;
 
-<ReactFlutter client:visible react={testReact} flutter={testFlutter} reactTitle="React + RTL" flutterTitle="Flutter testWidgets" />
+<ReactFlutter react={testReact} flutter={testFlutter} reactTitle="React + RTL" flutterTitle="Flutter testWidgets" />
 
 <Diff title="What changes when you move from RTL to Flutter widget tests">
 

@@ -3,7 +3,7 @@ title: 'The Flutter Lifecycle'
 description: 'initState, didChangeDependencies, didUpdateWidget, setState, and dispose — mapped to React hooks and class component lifecycle methods.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -119,7 +119,7 @@ class _TimerWidgetState extends State<TimerWidget> {
   }
 }`;
 
-<ReactFlutter client:visible react={lcReact} flutter={lcFlutter} />
+<ReactFlutter react={lcReact} flutter={lcFlutter} />
 
 <Diff title="React hooks lifecycle → Flutter State lifecycle">
 

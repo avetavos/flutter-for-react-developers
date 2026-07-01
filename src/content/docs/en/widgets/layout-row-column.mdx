@@ -3,7 +3,7 @@ title: 'Layout: Row & Column'
 description: 'Row, Column, Expanded, and axis alignment in Flutter vs CSS flexbox — the same model with different vocabulary.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -87,7 +87,7 @@ class NavBar extends StatelessWidget {
   }
 }`;
 
-<ReactFlutter client:visible react={layoutReact} flutter={layoutFlutter} />
+<ReactFlutter react={layoutReact} flutter={layoutFlutter} />
 
 <Diff title="Flexbox → Row / Column">
 

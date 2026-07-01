@@ -3,7 +3,7 @@ title: 'No JSX'
 description: 'Flutter has no JSX. Learn how Dart named-parameter constructor calls replace angle-bracket tags, and how to render conditional and list UI without JSX expressions.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -71,7 +71,7 @@ class Badge extends StatelessWidget {
   }
 }`;
 
-<ReactFlutter client:visible react={reactNoJsx} flutter={flutterNoJsx} />
+<ReactFlutter react={reactNoJsx} flutter={flutterNoJsx} />
 
 export const noJsxCode = `import 'package:flutter/material.dart';
 

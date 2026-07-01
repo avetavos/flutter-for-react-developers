@@ -3,7 +3,7 @@ title: 'Composition over Configuration'
 description: 'Flutter และ React ต่างชอบ composition มากกว่า inheritance เรียนรู้ว่าการ wrap widget map กับ React children props, HOCs และ render props อย่างไร'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -70,7 +70,7 @@ AppCard(
   ),
 )`;
 
-<ReactFlutter client:visible react={reactComposition} flutter={flutterComposition} />
+<ReactFlutter react={reactComposition} flutter={flutterComposition} />
 
 export const compositionCode = `import 'package:flutter/material.dart';
 

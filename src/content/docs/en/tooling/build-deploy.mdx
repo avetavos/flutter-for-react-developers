@@ -3,7 +3,7 @@ title: 'Building & Deploying'
 description: "flutter build apk/ipa/web, release signing, and a GitHub Actions CI pipeline vs React's npm run build and Vercel/Netlify deploys."
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
@@ -118,7 +118,7 @@ jobs:
       - run: flutter test --coverage
       - run: flutter build web --release`;
 
-<ReactFlutter client:visible react={ciReact} flutter={ciFlutter} reactTitle="React / GitHub Actions" flutterTitle="Flutter / GitHub Actions" />
+<ReactFlutter react={ciReact} flutter={ciFlutter} reactTitle="React / GitHub Actions" flutterTitle="Flutter / GitHub Actions" />
 
 Here is a full CI workflow with branch triggers for both `main` and feature branches:
 

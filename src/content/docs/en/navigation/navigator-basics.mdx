@@ -3,7 +3,7 @@ title: 'Navigator Basics'
 description: 'Navigator.push and Navigator.pop vs useNavigate and history.push — the Flutter navigation stack explained for React developers.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -71,7 +71,7 @@ class DetailScreen extends StatelessWidget {
   }
 }`;
 
-<ReactFlutter client:visible react={navReact} flutter={navFlutter} />
+<ReactFlutter react={navReact} flutter={navFlutter} />
 
 <Diff title="useNavigate / history.push → Navigator.push">
 

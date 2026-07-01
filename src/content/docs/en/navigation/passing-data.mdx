@@ -3,7 +3,7 @@ title: 'Passing Data Between Screens'
 description: 'Pass data forward via constructors, pass data back via Navigator.pop return values — compared to React Router route state and callbacks.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -60,7 +60,7 @@ final result = await Navigator.push<Map<String, String>>(
 // In EditScreen:
 Navigator.pop(context, {'name': 'Updated'});`;
 
-<ReactFlutter client:visible react={dataReact} flutter={dataFlutter} />
+<ReactFlutter react={dataReact} flutter={dataFlutter} />
 
 <Diff title="Route state / callbacks → constructor args / pop return value">
 

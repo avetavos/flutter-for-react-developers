@@ -3,7 +3,7 @@ title: 'Stateless Widget'
 description: 'StatelessWidget and build() vs a React function component returning JSX — the Flutter equivalent you already know.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -52,7 +52,7 @@ class Greeting extends StatelessWidget {
 // Usage
 const Greeting(name: 'Ava')`;
 
-<ReactFlutter client:visible react={slwReact} flutter={slwFlutter} />
+<ReactFlutter react={slwReact} flutter={slwFlutter} />
 
 <Diff title="Function component → StatelessWidget">
 

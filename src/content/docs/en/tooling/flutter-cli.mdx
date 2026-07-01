@@ -3,7 +3,7 @@ title: 'The Flutter CLI'
 description: 'flutter run, build, analyze, and doctor vs npm scripts and Vite — hot reload vs Fast Refresh, and the commands you reach for every day.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
@@ -63,7 +63,7 @@ flutter clean
 # Upgrade dependencies
 flutter pub upgrade`;
 
-<ReactFlutter client:visible react={cliReact} flutter={cliFlutter} reactTitle="React / npm" flutterTitle="Flutter CLI" />
+<ReactFlutter react={cliReact} flutter={cliFlutter} reactTitle="React / npm" flutterTitle="Flutter CLI" />
 
 ## Hot reload vs Fast Refresh
 

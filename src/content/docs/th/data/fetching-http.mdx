@@ -3,7 +3,7 @@ title: 'การดึงข้อมูลด้วย http'
 description: 'แพ็กเกจ http เทียบกับ fetch/axios — GET requests, การ decode response และการจัดการ error ใน Flutter'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -54,7 +54,7 @@ Future<Map<String, dynamic>> getUser(int id) async {
   return data;
 }`;
 
-<ReactFlutter client:visible react={fetchReact} flutter={fetchFlutter} />
+<ReactFlutter react={fetchReact} flutter={fetchFlutter} />
 
 <Diff title="fetch/axios → http package">
 

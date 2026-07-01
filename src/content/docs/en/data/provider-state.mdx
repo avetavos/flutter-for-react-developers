@@ -3,7 +3,7 @@ title: 'Shared State with Provider'
 description: 'Managing shared app state with Provider, ChangeNotifier, and context.watch vs React Context and Redux.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -89,7 +89,7 @@ class IncrementButton extends StatelessWidget {
   }
 }`;
 
-<ReactFlutter client:visible react={provReact} flutter={provFlutter} />
+<ReactFlutter react={provReact} flutter={provFlutter} />
 
 ## Runnable example
 

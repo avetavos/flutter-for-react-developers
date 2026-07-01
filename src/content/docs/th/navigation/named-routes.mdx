@@ -3,7 +3,7 @@ title: 'Named Routes (เส้นทางที่ตั้งชื่อ)'
 description: "Named routes ของ Flutter — routes: map และ Navigator.pushNamed — เทียบกับ <Route path> config ของ React Router"
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -42,7 +42,7 @@ MaterialApp(
 Navigator.pushNamed(context, '/detail');
 Navigator.pushNamed(context, '/profile');`;
 
-<ReactFlutter client:visible react={routesReact} flutter={routesFlutter} />
+<ReactFlutter react={routesReact} flutter={routesFlutter} />
 
 <Diff title="React Router path config → Flutter routes map">
 

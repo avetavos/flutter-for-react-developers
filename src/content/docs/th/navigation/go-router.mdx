@@ -3,7 +3,7 @@ title: 'go_router'
 description: 'Declarative routing แบบ URL-aware ใน Flutter ด้วย go_router — สิ่งที่เทียบเท่ากับ React Router v6 สำหรับแอป Flutter'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
@@ -67,7 +67,7 @@ final router = GoRouter(
 // Navigate:
 context.go('/products/42');`;
 
-<ReactFlutter client:visible react={goReact} flutter={goFlutter} />
+<ReactFlutter react={goReact} flutter={goFlutter} />
 
 <Diff title="React Router v6 → go_router">
 

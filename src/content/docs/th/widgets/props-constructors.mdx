@@ -3,7 +3,7 @@ title: 'Props & Constructors'
 description: 'การส่งข้อมูลให้ widget ผ่าน named constructor parameter — สิ่งที่เทียบเท่ากับ props ของ React ใน Flutter'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -67,7 +67,7 @@ class Badge extends StatelessWidget {
 Badge(label: 'Notifications', count: 5)
 Badge(label: 'Alerts', color: Colors.red, count: 2)`;
 
-<ReactFlutter client:visible react={propsReact} flutter={propsFlutter} />
+<ReactFlutter react={propsReact} flutter={propsFlutter} />
 
 <Diff title="Props → Constructor parameters">
 

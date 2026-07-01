@@ -3,7 +3,7 @@ title: "Future และ Async/Await"
 description: "วิธีที่ Flutter's Future ทำงานเหมือน JS Promise — async/await, .then(), การจัดการ error และ try/catch"
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -66,7 +66,7 @@ Future<void> loadUserAsync(String id) async {
   }
 }`;
 
-<ReactFlutter client:visible react={reactCode} flutter={flutterCode} />
+<ReactFlutter react={reactCode} flutter={flutterCode} />
 
 <Diff title="Future vs Promise">
 

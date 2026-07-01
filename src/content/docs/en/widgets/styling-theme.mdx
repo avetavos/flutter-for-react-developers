@@ -3,7 +3,7 @@ title: 'Styling & Theme'
 description: 'No CSS in Flutter — styling via widget properties, TextStyle, BoxDecoration, and ThemeData vs CSS and styled-components.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -75,7 +75,7 @@ MaterialApp(
 final theme = Theme.of(context);
 Container(color: theme.colorScheme.surface, ...)`;
 
-<ReactFlutter client:visible react={styleReact} flutter={styleFlutter} />
+<ReactFlutter react={styleReact} flutter={styleFlutter} />
 
 <Diff title="CSS / styled-components → Flutter styling">
 

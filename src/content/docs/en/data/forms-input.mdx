@@ -3,7 +3,7 @@ title: 'Forms and Input'
 description: 'TextField, TextEditingController, Form validation vs React controlled inputs and onChange handlers.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -78,7 +78,7 @@ class _EmailInputState extends State<EmailInput> {
   }
 }`;
 
-<ReactFlutter client:visible react={fiReact} flutter={fiFlutter} />
+<ReactFlutter react={fiReact} flutter={fiFlutter} />
 
 ## Form Validation
 
@@ -198,7 +198,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 }`;
 
-<ReactFlutter client:visible react={fvReact} flutter={fvFlutter} />
+<ReactFlutter react={fvReact} flutter={fvFlutter} />
 
 ## Runnable example
 

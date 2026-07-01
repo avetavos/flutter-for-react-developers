@@ -3,7 +3,7 @@ title: 'การส่งข้อมูลระหว่างหน้า'
 description: 'ส่งข้อมูลไปข้างหน้าผ่าน constructor, ส่งข้อมูลกลับผ่าน Navigator.pop return value — เทียบกับ route state และ callback ของ React Router'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -60,7 +60,7 @@ final result = await Navigator.push<Map<String, String>>(
 // In EditScreen:
 Navigator.pop(context, {'name': 'Updated'});`;
 
-<ReactFlutter client:visible react={dataReact} flutter={dataFlutter} />
+<ReactFlutter react={dataReact} flutter={dataFlutter} />
 
 <Diff title="Route state / callbacks → constructor args / pop return value">
 

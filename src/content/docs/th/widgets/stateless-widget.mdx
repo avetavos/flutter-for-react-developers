@@ -3,7 +3,7 @@ title: 'Stateless Widget'
 description: 'StatelessWidget และ build() เทียบกับ function component ของ React ที่ return JSX — สิ่งที่เทียบเท่าใน Flutter ที่คุณรู้จักดีอยู่แล้ว'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -52,7 +52,7 @@ class Greeting extends StatelessWidget {
 // Usage
 const Greeting(name: 'Ava')`;
 
-<ReactFlutter client:visible react={slwReact} flutter={slwFlutter} />
+<ReactFlutter react={slwReact} flutter={slwFlutter} />
 
 <Diff title="Function component → StatelessWidget">
 

@@ -3,7 +3,7 @@ title: 'Everything is a Widget'
 description: 'In React, layout is CSS. In Flutter, layout is widgets. Padding, Center, Column — they are all widgets you compose, not styles you apply.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -45,7 +45,7 @@ class UserCard extends StatelessWidget {
   }
 }`;
 
-<ReactFlutter client:visible react={reactEverything} flutter={flutterEverything} />
+<ReactFlutter react={reactEverything} flutter={flutterEverything} />
 
 export const widgetCode = `import 'package:flutter/material.dart';
 

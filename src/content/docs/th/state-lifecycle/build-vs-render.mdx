@@ -3,7 +3,7 @@ title: 'build() vs render()'
 description: 'Flutter build() ทำงานทุก rebuild เหมือน React render — ต้องเป็น pure, ราคาถูก, และปราศจาก side effects'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -73,7 +73,7 @@ class _UserCardState extends State<UserCard> {
   }
 }`;
 
-<ReactFlutter client:visible react={bvReact} flutter={bvFlutter} />
+<ReactFlutter react={bvReact} flutter={bvFlutter} />
 
 <Diff title="React render body → Flutter build()">
 

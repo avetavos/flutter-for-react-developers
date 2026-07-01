@@ -3,7 +3,7 @@ title: 'Declarative UI'
 description: 'Flutter และ React ใช้แนวคิดเดียวกัน — UI = f(state) เรียนรู้ว่า widget tree, element tree และ hot reload map กับสิ่งที่คุณรู้อยู่แล้วอย่างไร'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -56,7 +56,7 @@ class _CounterState extends State<Counter> {
   }
 }`;
 
-<ReactFlutter client:visible react={reactDeclarative} flutter={flutterDeclarative} />
+<ReactFlutter react={reactDeclarative} flutter={flutterDeclarative} />
 
 export const declarativeCode = `import 'package:flutter/material.dart';
 

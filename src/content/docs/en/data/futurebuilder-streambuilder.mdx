@@ -3,7 +3,7 @@ title: 'FutureBuilder and StreamBuilder'
 description: 'Declarative async UI with FutureBuilder and StreamBuilder vs useEffect+fetch, react-query, and Suspense.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -64,7 +64,7 @@ class UserProfile extends StatelessWidget {
   }
 }`;
 
-<ReactFlutter client:visible react={fbReact} flutter={fbFlutter} />
+<ReactFlutter react={fbReact} flutter={fbFlutter} />
 
 ## StreamBuilder
 
@@ -110,7 +110,7 @@ class LivePrice extends StatelessWidget {
 // Usage — pass in any Stream<double>
 // StreamBuilder wires itself to the stream; no cleanup code needed.`;
 
-<ReactFlutter client:visible react={sbReact} flutter={sbFlutter} />
+<ReactFlutter react={sbReact} flutter={sbFlutter} />
 
 ## Runnable example
 

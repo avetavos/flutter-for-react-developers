@@ -3,7 +3,7 @@ title: 'Same vs Different: ตาราง Lookup'
 description: 'Reference แบบ side-by-side ที่ map ทุก React concept ไปยัง Flutter equivalent บุ๊กมาร์กหน้านี้ไว้'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
@@ -105,7 +105,7 @@ class _ProfileCardState extends State<ProfileCard> {
   }
 }`;
 
-<ReactFlutter client:visible react={reactSurprise} flutter={flutterSurprise} />
+<ReactFlutter react={reactSurprise} flutter={flutterSurprise} />
 
 <Diff title="ความแปลกใจสองอันดับแรกสำหรับ React developer">
 

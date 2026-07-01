@@ -3,7 +3,7 @@ title: 'Declarative UI'
 description: 'Flutter and React share the same core idea — UI = f(state). Learn how widget trees, the element tree, and hot reload map to what you already know.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -56,7 +56,7 @@ class _CounterState extends State<Counter> {
   }
 }`;
 
-<ReactFlutter client:visible react={reactDeclarative} flutter={flutterDeclarative} />
+<ReactFlutter react={reactDeclarative} flutter={flutterDeclarative} />
 
 export const declarativeCode = `import 'package:flutter/material.dart';
 

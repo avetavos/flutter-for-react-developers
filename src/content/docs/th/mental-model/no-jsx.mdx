@@ -3,7 +3,7 @@ title: 'No JSX'
 description: 'Flutter ไม่มี JSX เรียนรู้ว่า Dart named-parameter constructor calls แทน angle-bracket tags อย่างไร และ render UI แบบ conditional กับ list โดยไม่ใช้ JSX expressions'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -71,7 +71,7 @@ class Badge extends StatelessWidget {
   }
 }`;
 
-<ReactFlutter client:visible react={reactNoJsx} flutter={flutterNoJsx} />
+<ReactFlutter react={reactNoJsx} flutter={flutterNoJsx} />
 
 export const noJsxCode = `import 'package:flutter/material.dart';
 

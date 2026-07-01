@@ -3,7 +3,7 @@ title: 'JSON and Typed Models'
 description: 'Parsing JSON into typed Dart classes with fromJson factories vs TypeScript interfaces and JSON.parse.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -70,7 +70,7 @@ final map = jsonDecode(raw) as Map<String, dynamic>;
 final user = User.fromJson(map);
 print(user.name);`;
 
-<ReactFlutter client:visible react={jsonReact} flutter={jsonFlutter} />
+<ReactFlutter react={jsonReact} flutter={jsonFlutter} />
 
 <Diff title="Structural typing vs explicit fromJson">
 

@@ -3,7 +3,7 @@ title: 'Rebuilds & Keys'
 description: 'เมื่อไหร่ widgets rebuild, const widgets เพื่อข้าม rebuilds, และ Key สำหรับ identity — Flutter reconciliation vs React reconciliation'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -69,7 +69,7 @@ class Page extends StatelessWidget {
   }
 }`;
 
-<ReactFlutter client:visible react={rkReact} flutter={rkFlutter} />
+<ReactFlutter react={rkReact} flutter={rkFlutter} />
 
 ## Keys — identity ข้ามการ rebuild
 
@@ -106,7 +106,7 @@ class TodoList extends StatelessWidget {
   }
 }`;
 
-<ReactFlutter client:visible react={rkKeysReact} flutter={rkKeysFlutter} />
+<ReactFlutter react={rkKeysReact} flutter={rkKeysFlutter} />
 
 <Diff title="React reconciliation → Flutter reconciliation">
 

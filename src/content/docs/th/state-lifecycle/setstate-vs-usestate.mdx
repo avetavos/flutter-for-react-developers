@@ -3,7 +3,7 @@ title: 'setState vs useState'
 description: 'StatefulWidget + State + setState(() => ...) เปรียบเทียบกับ React useState — ทำไม Flutter ถึงแยก widget ออกจาก state class'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -60,7 +60,7 @@ class _CounterState extends State<Counter> {
   }
 }`;
 
-<ReactFlutter client:visible react={ssReact} flutter={ssFlutter} />
+<ReactFlutter react={ssReact} flutter={ssFlutter} />
 
 <Diff title="useState → StatefulWidget + setState">
 

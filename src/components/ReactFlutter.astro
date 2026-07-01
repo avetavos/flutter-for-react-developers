@@ -1,0 +1,30 @@
+---
+import { Code } from 'astro-expressive-code/components';
+
+interface Props {
+  react: string;
+  flutter: string;
+  reactTitle?: string;
+  flutterTitle?: string;
+  reactLang?: string;
+  flutterLang?: string;
+}
+
+const {
+  react,
+  flutter,
+  reactTitle = 'React',
+  flutterTitle = 'Flutter',
+  reactLang = 'tsx',
+  flutterLang = 'dart',
+} = Astro.props;
+---
+
+<div class="tsgo">
+  <div class="tsgo__col">
+    <Code code={react} lang={reactLang} title={reactTitle} />
+  </div>
+  <div class="tsgo__col">
+    <Code code={flutter} lang={flutterLang} title={flutterTitle} />
+  </div>
+</div>

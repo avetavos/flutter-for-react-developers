@@ -3,7 +3,7 @@ title: 'pub & pubspec.yaml'
 description: 'flutter pub add และ pubspec.yaml เทียบกับ npm และ package.json — dependencies, version constraints และการประกาศ assets'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
@@ -125,7 +125,7 @@ flutter:
     - assets/images/
     - assets/icons/app_icon.png`;
 
-<ReactFlutter client:visible react={pkgReact} flutter={pkgFlutter} />
+<ReactFlutter react={pkgReact} flutter={pkgFlutter} />
 
 <Diff title="package.json → pubspec.yaml">
 

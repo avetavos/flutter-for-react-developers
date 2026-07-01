@@ -3,7 +3,7 @@ title: 'Tabs & Drawer'
 description: 'BottomNavigationBar, TabBar, and Drawer in Flutter — persistent navigation chrome compared to React tab libraries and sidebar components.'
 ---
 
-import ReactFlutter from '../../../../components/ReactFlutter.tsx';
+import ReactFlutter from '../../../../components/ReactFlutter.astro';
 import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
@@ -72,7 +72,7 @@ class _AppState extends State<App> {
   }
 }`;
 
-<ReactFlutter client:visible react={tabsReact} flutter={tabsFlutter} />
+<ReactFlutter react={tabsReact} flutter={tabsFlutter} />
 
 <Diff title="Custom tab component → BottomNavigationBar / Drawer">
 

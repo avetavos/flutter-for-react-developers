@@ -11,7 +11,7 @@ import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
 ใน React `useState` คือ hook ที่เก็บค่าและคืน setter กลับมา เรียก setter แล้ว React จะกำหนดเวลา re-render และ component function จะทำงานอีกครั้งพร้อมค่าใหม่ state อยู่ใน slot ซ่อนอยู่ที่ผูกกับ component instance
 
-Flutter ใช้ `setState(() { ... })` เป็นเทียบเท่า แต่ก่อนจะเรียกได้ คุณต้องมีสอง class แทนที่จะเป็นหนึ่ง — คือ `StatefulWidget` และ `State<T>` การแยกนี้ดูยาวเหนื่อยตอนแรก แต่มันแก้ปัญหาเฉพาะ: widget objects ใน Flutter เป็น immutable และ framework สามารถสร้างใหม่ได้ราคาถูก `State` object อยู่ได้นานกว่าและเก็บข้อมูลที่เปลี่ยนแปลงได้จริง
+Flutter ใช้ `setState(() { ... })` เป็นเทียบเท่า แต่ก่อนจะเรียกได้ คุณต้องมีสอง class แทนที่จะเป็นหนึ่ง — คือ `StatefulWidget` และ `State<T>` การแยกนี้ดูยาวเหนื่อยตอนแรก แต่แก้ปัญหาเฉพาะ: widget objects ใน Flutter เป็น immutable และ framework สามารถสร้างใหม่ได้ราคาถูก `State` object อยู่ได้นานกว่าและเก็บข้อมูลที่เปลี่ยนแปลงได้จริง
 
 ## การเปรียบเทียบแบบ side-by-side
 
@@ -66,7 +66,7 @@ class _CounterState extends State<Counter> {
 
 - **สอง class แทนที่จะเป็นหนึ่ง** `StatefulWidget` เก็บ configuration ที่ไม่เปลี่ยนแปลง (เหมือน props) `State<T>` เก็บ mutable fields และเป็นเจ้าของ `build()` Flutter สร้าง `State` object หนึ่งตัวต่อ widget instance และเก็บไว้ข้ามการ rebuild
 - **`setState(() { ... })` รับ callback** ที่ทำ mutation โดยตรงบน field (`_count++`) setter ของ React แทนที่ค่า; callback ของ Flutter เปลี่ยนแปลง in-place Flutter อ่านค่าใหม่จาก field ไม่ใช่จาก snapshot ที่ return มา
-- **`createState()`** คือ factory ที่สร้าง `State` object มันถูกเรียกครั้งเดียวเมื่อ widget ถูกแทรกเข้าไปใน tree ครั้งแรก — เทียบเท่ากับ first render ใน React
+- **`createState()`** คือ factory ที่สร้าง `State` object Flutter เรียกครั้งเดียวเมื่อ widget ถูกแทรกเข้าไปใน tree ครั้งแรก — เทียบเท่ากับ first render ใน React
 - **Fields ไม่ใช่ destructured tuples** React return `[value, setter]`; Flutter state fields เป็น Dart instance variables ธรรมดา (`int _count = 0`) เครื่องหมาย underscore นำหน้าเป็น convention ของ Dart สำหรับ private members
 - **ขอบเขตการ rebuild** ใน React ทุก `useState` setter call ทำให้ component function ทั้งหมด re-render ใน Flutter `setState` ทำให้ `build()` method บน `State` object เดิม rebuild — ขอบเขตเหมือนกันในทางปฏิบัติสำหรับ single widgets
 
@@ -142,10 +142,10 @@ export const quizSs = [
   {
     q: 'setState() ของ Flutter ทำอะไรที่ต่างจาก setter ของ useState ใน React?',
     options: [
-      'มัน return ค่า state ใหม่กลับมา',
-      'มัน mutate fields in-place แทนที่จะแทนที่ค่า state',
-      'มัน batch หลาย state updates เข้าด้วยกัน',
-      'มันป้องกันไม่ให้ widget rebuild',
+      'return ค่า state ใหม่กลับมา',
+      'mutate fields in-place แทนที่จะแทนที่ค่า state',
+      'batch หลาย state updates เข้าด้วยกัน',
+      'ป้องกันไม่ให้ widget rebuild',
     ],
     answer: 1,
   },

@@ -87,7 +87,7 @@ class _CounterPageState extends State<CounterPage> {
 - **สอง class ไม่ใช่หนึ่ง** `StatefulWidget` แบ่งเสมอเป็น widget class (`CounterPage`) และ state class (`_CounterPageState`) Widget class คือ immutable configuration ส่วน state class เก็บ mutable data และ `build` method
 - **`setState(() { ... })`** คือ `setCount` ของ Flutter คุณ mutate variable ใน callback แล้ว Flutter schedule rebuild — เหมือนกับการเรียก state setter ใน React
 - **`_count` (underscore prefix)** คือ convention ของ Dart สำหรับ private field — เหมือน `#count` private field ใน modern JS class แต่เป็น library-private
-- **`Scaffold`** คือ Material page shell มี slot สำหรับ `AppBar`, `body`, `FloatingActionButton`, และ `SnackBar` คิดว่ามันคือ pre-wired page layout component
+- **`Scaffold`** คือ Material page shell มี slot สำหรับ `AppBar`, `body`, `FloatingActionButton`, และ `SnackBar` คิดว่าเป็น pre-wired page layout component
 - **`Column` + `SizedBox`** แทนที่ `<div style="marginTop: 16">` ใน Flutter คุณ compose layout ด้วย widget ไม่ใช่ CSS
 
 </Diff>

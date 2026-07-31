@@ -154,7 +154,7 @@ const _contacts = [
 
 - **`Text` ไม่ wrap ข้อความโดยอัตโนมัติ** ต่างจาก `<p>` ตรงที่ widget `Text` จะถูกตัด (clip) ถ้า parent แคบเกินไป ตั้ง `softWrap: true` (ค่า default) และ `overflow: TextOverflow.ellipsis` เพื่อตัดข้อความด้วย `...` หรือใช้ `TextOverflow.fade`
 - **`Image.network` เป็น async** image โหลดแบบ asynchronous ใช้ `loadingBuilder` เพื่อแสดง placeholder ระหว่างโหลด เทียบเท่ากับ component `<Skeleton>` ใน React
-- **`ListView.builder` ทำ virtualization เสมอ** ต่างจากการ map array ไปเป็น `<li>` ใน JSX (ซึ่ง render ทุก item) `ListView.builder` จะ build widget เฉพาะ item ที่มองเห็นเท่านั้น ใช้มันกับ list ที่ไม่ทราบความยาวหรือยาวมาก เทียบเท่ากับ `react-virtualized` / `react-window` แต่มีมาให้ในตัว
+- **`ListView.builder` ทำ virtualization เสมอ** ต่างจากการ map array ไปเป็น `<li>` ใน JSX (ซึ่ง render ทุก item) `ListView.builder` จะ build widget เฉพาะ item ที่มองเห็นเท่านั้น ใช้กับ list ที่ไม่ทราบความยาวหรือยาวมาก เทียบเท่ากับ `react-virtualized` / `react-window` แต่มีมาให้ในตัว
 - **Button ต้องมี `onPressed`** ถ้า `onPressed` เป็น `null` button จะ render ในสถานะ disabled โดยอัตโนมัติ คุณไม่ต้องสลับ prop `disabled`
 - **`Icon` ใช้ class แบบ enum ไม่ใช่ string** `Icons.favorite` เป็นค่าคงที่ ไม่ใช่ `"favorite"` หรือชื่อ font class การ autocomplete ใน IDE จะแสดง icon ที่มีให้ทั้งหมด
 

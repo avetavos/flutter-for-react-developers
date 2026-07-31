@@ -166,9 +166,9 @@ class AppCard extends StatelessWidget {
 
 - **`{children}` ใน JSX** → parameter `child: Widget` (single child) หรือ `children: List<Widget>` (multiple children)
 - **HOC wrapping behavior** → Wrap ด้วย widget: `GestureDetector(onTap: ..., child: myWidget)` — แต่ละ wrapper เพิ่ม behavior เดียว
-- **Render props** → ส่ง `Widget Function(...)` เป็น constructor parameter — parent เรียกมันแล้วใช้ widget ที่ return มา
+- **Render props** → ส่ง `Widget Function(...)` เป็น constructor parameter — parent เรียก function นั้นแล้วใช้ widget ที่ return มา
 - **`React.Children.map`** → `children` เป็น `List<Widget>` ธรรมดา — เรียก `.map()` ตรงๆ ได้เลย
-- **ไม่มี inheritance สำหรับ visual customization** — compose เสมอ, อย่า extend — คุณไม่สามารถ style widget โดยการ subclass มัน
+- **ไม่มี inheritance สำหรับ visual customization** — compose เสมอ, อย่า extend — คุณ style widget ด้วยการ subclass ไม่ได้
 
 </Diff>
 

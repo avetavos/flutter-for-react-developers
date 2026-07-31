@@ -13,7 +13,7 @@ import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
 ## FutureBuilder
 
-`FutureBuilder` คือคำตอบของ Flutter สำหรับ `useEffect` + `fetch` + loading boolean คุณส่ง `Future` และ callback `builder` ที่รับ `AsyncSnapshot` มาให้มัน snapshot นั้นมี enum `connectionState` (`waiting`, `done`) และ `data` หรือ `error` — ไม่ต้องจัดการ flag เองเลย
+`FutureBuilder` คือคำตอบของ Flutter สำหรับ `useEffect` + `fetch` + loading boolean คุณส่ง `Future` และ callback `builder` ที่รับ `AsyncSnapshot` เข้าไป snapshot นั้นมี enum `connectionState` (`waiting`, `done`) และ `data` หรือ `error` — ไม่ต้องจัดการ flag เองเลย
 
 export const fbReact = `// React: useEffect + fetch + loading flag
 function UserProfile({ userId }) {

@@ -84,7 +84,7 @@ Container(color: theme.colorScheme.surface, ...)`;
 - **`BoxDecoration` = กฎ CSS เชิงกล่อง** `background-color`, `border-radius`, `border`, `box-shadow` และการเติม gradient ล้วนใส่บน `BoxDecoration` ที่ส่งให้ `Container(decoration: ...)`
 - **`Theme.of(context)` = `useTheme()`** อ่าน theme ปัจจุบันของแอปจากที่ไหนก็ได้ใน widget tree `Theme.of(context).colorScheme.primary` เทียบเท่ากับ `theme.colors.primary` จาก `ThemeProvider`
 - **Material 3 `ColorScheme.fromSeed`** ส่ง `seedColor` ของแบรนด์เพียงสีเดียวแล้ว Flutter จะ derive palette สีที่เข้าถึงได้ (accessible) ครบทั้งชุดให้อัตโนมัติ ไม่ต้องระบุ color token ทั้ง 20 ตัวด้วยมือ
-- **`copyWith` สำหรับ override เฉพาะจุด** `Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.red)` override property ตัวเดียวในขณะที่สืบทอดที่เหลือจาก theme เทียบเท่ากับการ spread-merge style object ใน JS
+- **`copyWith` สำหรับ override เฉพาะจุด** `Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.red)` override property ตัวเดียว ส่วนที่เหลือสืบทอดมาจาก theme เทียบเท่ากับการ spread-merge style object ใน JS
 
 </Diff>
 
@@ -195,7 +195,7 @@ class StyleDemo extends StatelessWidget {
 
 export const quizStyle = [
   {
-    q: 'styling ทั้งหมดของ Flutter อยู่ที่ไหน — มันถูกใส่ให้ widget อย่างไร?',
+    q: 'styling ทั้งหมดของ Flutter อยู่ที่ไหน — และส่งถึง widget อย่างไร?',
     options: [
       'ในไฟล์ .css แยกต่างหากที่ import ไว้ด้านบนของไฟล์ Dart',
       'ผ่าน string ของ className ที่อ้างอิง global stylesheet',

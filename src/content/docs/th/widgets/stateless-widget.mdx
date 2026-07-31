@@ -9,7 +9,7 @@ import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
-ใน React function component คือฟังก์ชันที่รับ props เข้ามาแล้ว return JSX ออกไป สิ่งที่เทียบเท่าใน Flutter คือ `StatelessWidget` ซึ่งเป็น class ที่มี method `build()` เพียงตัวเดียว โดยรับ `BuildContext` เข้ามาแล้ว return `Widget` ออกไป โมเดลการ render เหมือนกันทุกประการ ทั้งคู่อธิบายว่า UI ควรหน้าตาเป็นอย่างไรเมื่อได้ input บางอย่าง และ framework จะรันคำอธิบายนั้นใหม่เมื่อ input เปลี่ยน
+ใน React function component คือฟังก์ชันที่รับ props เข้ามาแล้ว return JSX ออกไป สิ่งที่เทียบเท่าใน Flutter คือ `StatelessWidget` ที่เป็น class ที่มี method `build()` เพียงตัวเดียว โดยรับ `BuildContext` เข้ามาแล้ว return `Widget` ออกไป โมเดลการ render เหมือนกันทุกประการ ทั้งคู่อธิบายว่า UI ควรหน้าตาเป็นอย่างไรเมื่อได้ input บางอย่าง และ framework จะรันคำอธิบายนั้นใหม่เมื่อ input เปลี่ยน
 
 ความแตกต่างหลัก ๆ อยู่ที่ syntax เท่านั้น คือแทนที่จะเขียนฟังก์ชันคุณก็เขียน class แทน แทนที่จะ `return <div>` คุณก็ return `Widget` object แทน และแทนที่จะใช้ angle-bracket ของ JSX คุณก็ซ้อน constructor เข้าไปแทน
 
@@ -57,10 +57,10 @@ const Greeting(name: 'Ava')`;
 <Diff title="Function component → StatelessWidget">
 
 - **เป็น class ไม่ใช่ function** `StatelessWidget` คือ Dart class ที่ `extends StatelessWidget` คุณ override `build()` แทนการเขียน body ของฟังก์ชันธรรมดา
-- **`BuildContext context`** คือ argument ตัวแรกของ `build()` เสมอ มันให้เราเข้าถึง widget tree ที่อยู่เหนือ widget ตัวนี้ (theme, locale, navigator) นักพัฒนา React มองมันเป็นส่วนผสมระหว่าง React context กับตำแหน่งของ component ใน tree ได้
+- **`BuildContext context`** คือ argument ตัวแรกของ `build()` เสมอ โดยให้คุณเข้าถึง widget tree ที่อยู่เหนือ widget ตัวนี้ (theme, locale, navigator) นักพัฒนา React มอง `BuildContext` เป็นส่วนผสมระหว่าง React context กับตำแหน่งของ component ใน tree ได้
 - **`const` constructor** การทำเครื่องหมาย constructor เป็น `const` ช่วยให้ Flutter ข้ามการ rebuild ได้เมื่อ input ไม่เปลี่ยน เป็นการ optimize แบบเดียวกับที่ `React.memo` ให้ แต่ทำงานอัตโนมัติในระดับภาษา
-- **`super.key`** คือสิ่งที่เทียบเท่ากับ prop `key` ภายในของ React ควรส่งต่อมันผ่าน `super.key` ใน constructor เสมอ เพื่อให้ Flutter ทำ reconcile widget tree ได้ถูกต้อง
-- **ไม่มี JSX** การประกอบ widget คือการเรียก constructor ของ Dart เช่น `Padding(padding: ..., child: ...)` ตอนแรกอาจดูยืดยาวกว่า แต่มันถูก type-check เต็มรูปแบบและ IDE ช่วย autocomplete ได้
+- **`super.key`** คือสิ่งที่เทียบเท่ากับ prop `key` ภายในของ React ควรส่งต่อผ่าน `super.key` ใน constructor เสมอ เพื่อให้ Flutter ทำ reconcile widget tree ได้ถูกต้อง
+- **ไม่มี JSX** การประกอบ widget คือการเรียก constructor ของ Dart เช่น `Padding(padding: ..., child: ...)` ตอนแรกอาจดูยืดยาวกว่า แต่ถูก type-check เต็มรูปแบบและ IDE ช่วย autocomplete ได้
 
 </Diff>
 
@@ -147,20 +147,20 @@ export const quizSlw = [
   {
     q: 'ทำไมเราควรทำเครื่องหมาย constructor ของ widget เป็น `const` ใน Flutter?',
     options: [
-      'มันบังคับ — Flutter จะ throw error ถ้าไม่ใส่',
-      'มันป้องกันไม่ให้ Dart compiler ทำ tree-shaking widget นั้น',
-      'มันช่วยให้ Flutter ข้ามการ rebuild widget ได้เมื่อ input ไม่เปลี่ยน',
-      'มันทำให้ widget เป็น immutable ในระดับ type',
+      'บังคับ — Flutter จะ throw error ถ้าไม่ใส่',
+      'ป้องกันไม่ให้ Dart compiler ทำ tree-shaking widget นั้น',
+      'ช่วยให้ Flutter ข้ามการ rebuild widget ได้เมื่อ input ไม่เปลี่ยน',
+      'ทำให้ widget เป็น immutable ในระดับ type',
     ],
     answer: 2,
   },
   {
     q: 'จุดประสงค์ของ `super.key` ใน constructor ของ Flutter widget คืออะไร?',
     options: [
-      'มันเก็บชื่อที่ใช้แสดงของ widget ไว้สำหรับ debug',
-      'มันส่งต่อ reconciliation key ของ Flutter เพื่อให้ framework จับคู่ widget ข้ามการ rebuild ได้',
-      'มันทำเครื่องหมายว่า widget นั้นเป็น root ของ sub-tree',
-      'มันเป็น alias ของ hashCode ของ widget',
+      'เก็บชื่อที่ใช้แสดงของ widget ไว้สำหรับ debug',
+      'ส่งต่อ reconciliation key ของ Flutter เพื่อให้ framework จับคู่ widget ข้ามการ rebuild ได้',
+      'ทำเครื่องหมายว่า widget นั้นเป็น root ของ sub-tree',
+      'เป็น alias ของ hashCode ของ widget',
     ],
     answer: 1,
   },

@@ -30,11 +30,11 @@ React และ Flutter แก้ปัญหาข้อมูลพื้น�
 - **Future และ async/await** — การแมป `Promise` ↔ `Future` อย่างละเอียด, `.then()`, `.catchError()` และรูปแบบ `try`/`catch`
 - **HTTP และ JSON** — การใช้ `http` package เพื่อดึงข้อมูลจริงและ parse โมเดล Dart แบบ typed จาก JSON
 - **FutureBuilder** — วิธี declarative ของ Flutter ในการ render async state (loading / error / data) โดยไม่ต้องใช้ `useEffect`
-- **Provider** — การแชร์ข้อมูลข้าม widget tree ซึ่งเป็นตัวเทียบเท่ากับ React Context ใน Flutter
+- **Provider** — การแชร์ข้อมูลข้าม widget tree ที่เป็นตัวเทียบเท่ากับ React Context ใน Flutter
 
 ## ลองชิมรสชาติ async
 
-snippet ด้านล่างจำลองการโหลดข้อมูลแบบ async โดยใช้ `Future.delayed` — ไม่ต้องใช้ network มันสะท้อนรูปแบบ `useEffect(() => fetch(...), [])` ที่คุณเขียนใน React แต่แสดงออกในรูปแบบ `FutureBuilder` widget
+snippet ด้านล่างจำลองการโหลดข้อมูลแบบ async โดยใช้ `Future.delayed` — ไม่ต้องใช้ network โค้ดนี้สะท้อนรูปแบบ `useEffect(() => fetch(...), [])` ที่คุณเขียนใน React แต่แสดงออกในรูปแบบ `FutureBuilder` widget
 
 export const indexCode = `import 'package:flutter/material.dart';
 

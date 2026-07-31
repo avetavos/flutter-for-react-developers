@@ -9,7 +9,7 @@ import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
-ใน React เวลาที่คุณต้องการเพิ่ม spacing, จัดตำแหน่ง content หรือเรียง item เป็นแถว คุณจะนึกถึง CSS หรือ inline styles ทันที แต่ใน Flutter ไม่มี CSS ทุกสิ่งที่เกี่ยวกับการแสดงผล — padding, centering, clipping, shadows, rows, columns — ล้วนถูก express เป็น widget ในต้นไม้ นี่คือการเปลี่ยนแปลงทางความคิดที่ใหญ่ที่สุด และเมื่อคุณ "คลิก" กับมันได้ Flutter ที่เหลือก็จะตามมาได้อย่างเป็นธรรมชาติ
+ใน React เวลาที่คุณต้องการเพิ่ม spacing, จัดตำแหน่ง content หรือเรียง item เป็นแถว คุณจะนึกถึง CSS หรือ inline styles ทันที แต่ใน Flutter ไม่มี CSS ทุกสิ่งที่เกี่ยวกับการแสดงผล — padding, centering, clipping, shadows, rows, columns — ล้วนถูก express เป็น widget ในต้นไม้ นี่คือการเปลี่ยนแปลงทางความคิดที่ใหญ่ที่สุด และเมื่อคุณ "คลิก" กับแนวคิดนี้ได้ Flutter ที่เหลือก็จะตามมาได้อย่างเป็นธรรมชาติ
 
 ## Layout เป็นส่วนหนึ่งของ widget tree
 
@@ -115,7 +115,7 @@ class UserCard extends StatelessWidget {
 <Diff title="CSS layout → layout widgets">
 
 - **`Padding` widget** = CSS property `padding` — wrap widget ใดก็ได้: `Padding(padding: EdgeInsets.all(16), child: ...)`
-- **`Center` widget** = CSS `margin: auto` หรือ `align-items: center` — วาง widget ใดก็ได้ข้างในแล้วมันจะ center ในพื้นที่ที่มี
+- **`Center` widget** = CSS `margin: auto` หรือ `align-items: center` — วาง widget ใดก็ได้ข้างในแล้ว `Center` จะจัดให้อยู่กึ่งกลางพื้นที่ที่มี
 - **`Column` widget** = CSS `display: flex` + `flex-direction: column` — children เรียงตามแนวตั้ง
 - **`Row` widget** = CSS `display: flex` (default `flex-direction: row`) — children เรียงตามแนวนอน
 - **`SizedBox(height: n)`** = CSS `margin-bottom: n` หรือ `gap: n` — ช่องว่างขนาดคงที่ระหว่าง children

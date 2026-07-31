@@ -8,7 +8,7 @@ import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
-ใน CSS ทุก HTML element คือกล่องที่มี `padding`, `margin`, `border`, `width` และ `height` แต่ Flutter ไม่มี CSS box model แทนที่จะเป็นแบบนั้น มันมี **widget เฉพาะทาง** สำหรับแต่ละเรื่อง ตอนแรกฟังดูเหมือนยืดยาว แต่มันทำให้เจตนาของ layout ชัดเจนและประกอบกันได้
+ใน CSS ทุก HTML element คือกล่องที่มี `padding`, `margin`, `border`, `width` และ `height` แต่ Flutter ไม่มี CSS box model แทนที่จะเป็นแบบนั้น มี **widget เฉพาะทาง** สำหรับแต่ละเรื่อง ตอนแรกฟังดูเหมือนยืดยาว แต่ทำให้เจตนาของ layout ชัดเจนและประกอบกันได้
 
 widget สามตัวที่คุณจะหยิบมาใช้บ่อยที่สุดคือ `Container` (กล่องครบในตัวเดียว), `Padding` (เว้นระยะอย่างเดียว) และ `SizedBox` (ขนาดตายตัวหรือใช้เว้นช่องว่าง)
 
@@ -27,7 +27,7 @@ widget สามตัวที่คุณจะหยิบมาใช้บ�
 
 ## widget กล่องสามตัวและควรใช้ตัวไหนเมื่อไหร่
 
-**`Padding`** ใช้เมื่อคุณต้องการแค่เว้นระยะรอบ child เท่านั้น มันเบากว่า `Container` เพราะไม่มีต้นทุนในการวาด (painting cost)
+**`Padding`** ใช้เมื่อคุณต้องการแค่เว้นระยะรอบ child เท่านั้น `Padding` เบากว่า `Container` เพราะไม่มีต้นทุนในการวาด (painting cost)
 
 **`SizedBox`** ใช้เมื่อคุณต้องการขนาดตายตัว หรือใช้เป็นช่องว่างระหว่าง widget (`SizedBox(height: 16)` เป็นวิธีเว้นระยะแนวตั้งที่นิยมใช้กัน)
 

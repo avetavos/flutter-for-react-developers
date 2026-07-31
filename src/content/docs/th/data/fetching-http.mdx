@@ -9,7 +9,7 @@ import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
-ใน React คุณจะใช้ `fetch` หรือ `axios` สำหรับการทำ HTTP requests — ทั้งสองแบบนี้มีอยู่แล้วในเบราว์เซอร์หรือติดตั้งได้ด้วย package เดียว Flutter ไม่มี HTTP client ในตัว ดังนั้น ecosystem จึงใช้ `http` package จากทีม Dart เป็นมาตรฐาน mental model เหมือนกันทุกประการ: ส่ง request, `await` response, ตรวจสอบ status code, และ decode body ความแตกต่างอยู่ที่ API surface เท่านั้น
+ใน React คุณจะใช้ `fetch` หรือ `axios` สำหรับการทำ HTTP requests — ทั้งสองแบบนี้มีอยู่แล้วใน browser หรือติดตั้งได้ด้วย package เดียว Flutter ไม่มี HTTP client ในตัว ดังนั้น ecosystem จึงใช้ `http` package จากทีม Dart เป็นมาตรฐาน mental model เหมือนกันทุกประการ: ส่ง request, `await` response, ตรวจสอบ status code, และ decode body ความแตกต่างอยู่ที่ API surface เท่านั้น
 
 ## เปรียบเทียบแบบ side-by-side
 
@@ -59,7 +59,7 @@ Future<Map<String, dynamic>> getUser(int id) async {
 <Diff title="fetch/axios → http package">
 
 - **เพิ่มใน pubspec.** `http` ไม่ได้ bundle มากับ Flutter เพิ่ม `http: ^1.2.0` ใต้ `dependencies:` ใน `pubspec.yaml` แล้วรัน `flutter pub get`
-- **ไม่มี `fetch` ของเบราว์เซอร์.** Flutter รันบน Dart VM (และ Dart-compiled native binaries) ดังนั้น `fetch` API ของเบราว์เซอร์จึงไม่สามารถใช้ได้ `http.get(Uri)` คือตัวแทนที่ใช้งานได้ข้ามแพลตฟอร์ม
+- **ไม่มี `fetch` ของ browser.** Flutter รันบน Dart VM (และ Dart-compiled native binaries) ดังนั้น `fetch` API ของ browser จึงไม่สามารถใช้ได้ `http.get(Uri)` คือตัวแทนที่ใช้งานได้ข้ามแพลตฟอร์ม
 - **`Uri` ไม่ใช่ plain string.** `http.get` รับ `Uri` object ไม่ใช่ raw string ใช้ `Uri.parse('...')` เพื่อแปลง — ซึ่งจะตรวจสอบ URL ตอน parse ด้วย
 - **ต้องตรวจสอบ status เอง.** ต่างจาก `axios` ตรงที่ `http` package ไม่ throw error สำหรับ non-2xx responses คุณต้องตรวจสอบ `response.statusCode` เอง เหมือนกับการเช็ค `res.ok` ใน `fetch`
 - **`jsonDecode` ไม่ใช่ `.json()`.** `response.body` เป็น `String` ธรรมดา เรียก `jsonDecode(response.body)` จาก `dart:convert` เพื่อ parse — เทียบเท่ากับ `await res.json()` ใน `fetch`

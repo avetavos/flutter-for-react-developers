@@ -9,9 +9,9 @@ import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
-ใน React component function (หรือ `render()` ใน class components) ถูกเรียกทุกครั้งที่ state หรือ props เปลี่ยน มันต้องเป็น **pure function**: ถ้า state และ props เหมือนกันมันต้อง return JSX เหมือนกัน โดยไม่มี side effects ใน body
+ใน React component function (หรือ `render()` ใน class components) ถูกเรียกทุกครั้งที่ state หรือ props เปลี่ยน function นั้นต้องเป็น **pure function**: ถ้า state และ props เหมือนกัน ก็ต้อง return JSX เหมือนกัน โดยไม่มี side effects ใน body
 
-`build()` method ของ Flutter ปฏิบัติตาม contract เดียวกันทุกประการ มันถูกเรียกโดย framework ทุกครั้งที่ rebuild ถูก trigger โดย `setState`, parent rebuild, หรือการเปลี่ยนแปลง `InheritedWidget` มันต้องเป็น **pure และราคาถูก**: ห้าม network calls, ห้าม `Future.wait`, ห้าม computation หนัก — เป็นแค่การบรรยาย UI
+`build()` method ของ Flutter ปฏิบัติตาม contract เดียวกันทุกประการ framework เรียก `build()` ทุกครั้งที่ rebuild ถูก trigger โดย `setState`, parent rebuild, หรือการเปลี่ยนแปลง `InheritedWidget` และ `build()` ต้อง **pure และราคาถูก**: ห้าม network calls, ห้าม `Future.wait`, ห้าม computation หนัก — เป็นแค่การบรรยาย UI
 
 กฎจริงของทั้งสอง framework นั้นเหมือนกัน: **describe, don't do** (บรรยาย อย่าทำ)
 
@@ -77,7 +77,7 @@ class _UserCardState extends State<UserCard> {
 
 <Diff title="React render body → Flutter build()">
 
-- **Purity contract เหมือนกัน** ทั้งคู่ต้องปราศจาก side effects อย่าเรียก `setState` ใน `build()` — มันสร้าง infinite rebuild loop อย่าเริ่ม network request ใน `build()`
+- **Purity contract เหมือนกัน** ทั้งคู่ต้องปราศจาก side effects อย่าเรียก `setState` ใน `build()` — จะเกิด infinite rebuild loop อย่าเริ่ม network request ใน `build()`
 - **`build()` อาจถูกเรียกบ่อยมาก** Flutter อาจเรียก `build()` หลายสิบครั้งต่อวินาทีระหว่าง animations งานหนัก (parsing, sorting, allocation หนัก) ต้องย้ายไปที่ `initState`, `didUpdateWidget`, หรือ compute isolate แยก
 - **`const` widgets ข้ามการเรียกทั้งหมด** ถ้า sub-widget เป็น `const` Flutter ใช้ instance ที่ cache ไว้และไม่เรียก `build()` อีก — เป็น optimization ที่แข็งแกร่งกว่า `React.memo` เพราะทำงานที่ระดับภาษาโดยไม่ต้องเขียน boilerplate
 - **`mounted` guard สำหรับ async** หลัง `await` ใน State method widget อาจถูก dispose ไปแล้ว ตรวจ `if (mounted)` เสมอก่อนเรียก `setState` ใน async code เทียบเท่า React: cleanup functions ใน `useEffect` (cancel fetch หรือ ignore result ถ้า component unmounted)

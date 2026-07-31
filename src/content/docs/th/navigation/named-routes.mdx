@@ -47,7 +47,7 @@ Navigator.pushNamed(context, '/profile');`;
 <Diff title="React Router path config → Flutter routes map">
 
 - **`routes:` บน `MaterialApp`** — map อยู่บน root `MaterialApp` widget คล้ายกับการวาง router ไว้ที่ top ของ React component tree ของคุณ keys เป็น string; values เป็น builder function `(BuildContext) => Widget`
-- **`initialRoute`** — แทนที่ `index` route ของ React Router มันคือชื่อ route ที่ Flutter push ก่อนเป็นอันดับแรก
+- **`initialRoute`** — แทนที่ `index` route ของ React Router โดยเป็นชื่อ route ที่ Flutter push ก่อนเป็นอันดับแรก
 - **`Navigator.pushNamed` vs `navigate(path)`** — ทั้งคู่รับ string key และนำทางไปยัง screen ที่ตรงกัน รูปแบบ API เกือบเหมือนกันทุกประการ
 - **`Navigator.pushReplacementNamed`** — แทนที่ route ปัจจุบันแทนที่จะ push ทับ เทียบเท่ากับ `navigate(path, { replace: true })` ของ React Router
 - **`Navigator.popAndPushNamed`** — pop route ปัจจุบันและ push อันใหม่ทันที มีประโยชน์สำหรับ wizard flows

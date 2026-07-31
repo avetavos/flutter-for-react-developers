@@ -79,7 +79,7 @@ class _AppState extends State<App> {
 - **`Scaffold` จองพื้นที่ให้.** ส่ง widget ให้ `Scaffold.bottomNavigationBar` และ Flutter จอง bottom padding ให้อัตโนมัติ — ไม่ต้องทำ flex layout เอง
 - **`BottomNavigationBar` vs `NavigationBar`.** `BottomNavigationBar` คือเวอร์ชัน Material 2 `NavigationBar` (ไม่มี "Bottom") คือ equivalent ของ Material 3 ที่มี pill indicator ทั้งคู่มีรูปแบบ API เหมือนกัน
 - **`TabBar` + `TabBarView` + `TabController`** — สำหรับ top tab (เช่น แอป social ที่มีแท็บ Following / For You) `DefaultTabController` ให้ controller โดยอัตโนมัติ คล้ายกับ controlled component ที่มี state ของตัวเอง `TabBarView` คือ pager ที่แสดงเนื้อหาแท็บที่ active
-- **`Drawer`** — ส่ง `Drawer` widget ให้ `Scaffold.drawer` ไอคอนเมนู hamburger ใน `AppBar` จะปรากฏอัตโนมัติ swipe จาก left edge เปิดมันบนทั้งสอง platform
+- **`Drawer`** — ส่ง `Drawer` widget ให้ `Scaffold.drawer` ไอคอนเมนู hamburger ใน `AppBar` จะปรากฏอัตโนมัติ swipe จาก left edge ก็เปิด drawer ได้บนทั้งสอง platform
 - **`IndexedStack` สำหรับ persistent tab state.** สลับ `body: _screens[index]` เป็น `body: IndexedStack(index: index, children: _screens)` เพื่อให้ทั้งสาม screen mount อยู่พร้อมกัน — เหมือนกับที่ React เก็บ off-screen tab ไว้ใน DOM เมื่อใช้ CSS `display: none`
 
 </Diff>

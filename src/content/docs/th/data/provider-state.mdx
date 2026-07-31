@@ -203,11 +203,11 @@ class IncrementButton extends StatelessWidget {
 
 <Diff title="React Context vs Provider">
 
-- **`ChangeNotifier` vs reducer/useState.** State อยู่ใน Dart class ที่ extends `ChangeNotifier` Properties เป็น plain getters; mutation methods เรียก `notifyListeners()` ที่ท้าย ไม่มี action objects ไม่มี switch statement — มันใกล้เคียงกับ MobX observable class มากกว่า Redux reducer
+- **`ChangeNotifier` vs reducer/useState.** State อยู่ใน Dart class ที่ extends `ChangeNotifier` Properties เป็น plain getters; mutation methods เรียก `notifyListeners()` ที่ท้าย ไม่มี action objects ไม่มี switch statement — รูปแบบนี้ใกล้เคียงกับ MobX observable class มากกว่า Redux reducer
 - **`notifyListeners()` vs `setState`/`dispatch`.** การเรียก `notifyListeners()` ภายใน method ของ `ChangeNotifier` บอก Provider ให้ rebuild subscribers ทั้งหมดที่ใช้ `context.watch` — บทบาทเดียวกับที่ `setState` เล่นใน local `useState` hook หรือที่ `dispatch` เล่นใน `useReducer`
-- **`context.watch` vs `useContext`.** `context.watch<T>()` subscribe widget ปัจจุบันกับการเปลี่ยนแปลงใน `T` และ trigger rebuild เมื่อ `notifyListeners()` ถูกเรียก มันเทียบเท่าโดยตรงกับการเรียก `useContext(MyContext)` ใน React component
+- **`context.watch` vs `useContext`.** `context.watch<T>()` subscribe widget ปัจจุบันกับการเปลี่ยนแปลงใน `T` และ trigger rebuild เมื่อ `notifyListeners()` ถูกเรียก เทียบเท่าโดยตรงกับการเรียก `useContext(MyContext)` ใน React component
 - **`context.read` vs `useContext` (สำหรับ callbacks).** `context.read<T>()` ดึง model โดย*ไม่* subscribe ใช้ภายใน callbacks (`onPressed`, `onChanged`) ที่คุณไม่ต้องการให้ widget rebuild แค่เพราะ model เปลี่ยน — pattern เดียวกับการดึง `dispatch` ออกจาก context ภายใน event handler
-- **`ChangeNotifierProvider` vs `Context.Provider`.** ทั้งสองครอบ subtree และทำให้ค่าพร้อมใช้งานสำหรับ descendants ความแตกต่างหลักคือ `ChangeNotifierProvider` ยังเป็นเจ้าของ lifecycle ด้วย — มันเรียก `dispose()` บน `ChangeNotifier` ของคุณเมื่อ widget ออกจาก tree ป้องกัน memory leaks โดยไม่ต้องมี cleanup code เพิ่มเติม
+- **`ChangeNotifierProvider` vs `Context.Provider`.** ทั้งสองครอบ subtree และทำให้ค่าพร้อมใช้งานสำหรับ descendants ความแตกต่างหลักคือ `ChangeNotifierProvider` ยังเป็นเจ้าของ lifecycle ด้วย — โดยจะเรียก `dispose()` บน `ChangeNotifier` ของคุณเมื่อ widget ออกจาก tree ป้องกัน memory leaks โดยไม่ต้องมี cleanup code เพิ่มเติม
 
 </Diff>
 

@@ -64,9 +64,9 @@ Navigator.pop(context, {'name': 'Updated'});`;
 
 <Diff title="Route state / callbacks → constructor args / pop return value">
 
-- **Constructor arg แทน route state.** แทนที่จะ serialize ข้อมูลลงใน route state คุณส่งมันโดยตรงให้ constructor ของ screen widget นี้ถูกตรวจสอบ type อย่างสมบูรณ์ที่ compile time — ไม่มี runtime `useLocation().state as Product` cast
+- **Constructor arg แทน route state.** แทนที่จะ serialize ข้อมูลลงใน route state คุณส่งข้อมูลตรงเข้า constructor ของ screen widget นี้ถูกตรวจสอบ type อย่างสมบูรณ์ที่ compile time — ไม่มี runtime `useLocation().state as Product` cast
 - **`await Navigator.push<T>`** — `Navigator.push` return `Future<T?>` ที่สำเร็จเมื่อหน้าจอที่ push ถูก pop `T` generic คือประเภทของ return value สิ่งนี้แทนที่ pattern ของ React ในการส่ง callback เป็น prop
-- **`Navigator.pop(context, value)`** — argument ที่สองของ `pop` คือ return value มันได้รับโดย `await`-er บนหน้าจอก่อนหน้า
+- **`Navigator.pop(context, value)`** — argument ที่สองของ `pop` คือ return value ซึ่ง `await`-er บนหน้าจอก่อนหน้าจะรับไป
 - **Type safety ตั้งแต่ต้นจนจบ.** คุณประกาศ return type เป็น generic บนทั้งสองฝั่ง: `Navigator.push<bool>` และ `Navigator.pop(context, true)` ความไม่ตรงกันถูกจับได้ที่ compile time
 - **ทางเลือกของ go_router.** ด้วย `go_router` ใช้ `state.extra` เพื่อส่ง object ไปข้างหน้า และ `context.pop(result)` เพื่อ return ค่า Path parameter เป็น string เสมอ
 
@@ -159,7 +159,7 @@ export const quizPassingData = [
   {
     q: 'วิธีที่แนะนำในการส่งข้อมูลไปยังหน้าจอใหม่ใน Flutter คืออะไร?',
     options: [
-      'Serialize มันลงใน route name string',
+      'Serialize ข้อมูลลงใน route name string',
       'เก็บไว้ใน global variable ก่อน push',
       'ส่งผ่าน constructor ของ widget เมื่อสร้าง screen ใน builder',
       'ใช้ Navigator.arguments เพื่อแนบ metadata กับ route',

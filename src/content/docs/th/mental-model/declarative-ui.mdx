@@ -115,7 +115,7 @@ class _CounterState extends State<Counter> {
 
 <Diff title="React reconciliation → Flutter element tree">
 
-- **`useState` / `setState`** → `setState(() { ... })` ภายใน `_CounterState` การเรียกมันจะ schedule การ rebuild ของ widget
+- **`useState` / `setState`** → `setState(() { ... })` ภายใน `_CounterState` การเรียก `setState` จะ schedule การ rebuild ของ widget
 - **Virtual DOM diff** → Flutter element tree + RenderObject tree Flutter diff widget tree ใหม่กับ element tree ที่มีอยู่ — แนวคิดเดียวกัน, implementation ต่างกัน
 - **Re-render เมื่อ state เปลี่ยน** → `build()` ถูกเรียกอีกครั้ง Flutter ฉลาด — เฉพาะ subtree ใต้ `State` ที่เปลี่ยนเท่านั้นที่ rebuild
 - **React.StrictMode double-render (dev)** → Flutter debug mode ใช้ hot reload — ไม่มี double-render แต่ Dart VM เพิ่ม assertion พิเศษ

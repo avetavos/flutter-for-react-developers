@@ -12,7 +12,7 @@ Flutter แยกความรับผิดชอบออกจากกั
 
 ## ทำไมต้องแยก?
 
-Widget tree ของ Flutter ถูก rebuild บ่อยมาก — การ rebuild ของ ancestor ใดก็ตามสามารถสร้าง widget objects ใหม่ได้ ถ้า state อยู่บน widget เองมันจะถูกทำลายทุกครั้งที่ rebuild ด้วยการเก็บ state ไว้ใน object `State` แยกต่างหากที่มีอายุยาวกว่าซึ่ง Flutter จัดการ การสร้าง widget description ใหม่ราคาถูกในขณะที่ state ยังคงอยู่ข้ามการ rebuild
+Widget tree ของ Flutter ถูก rebuild บ่อยมาก — การ rebuild ของ ancestor ใดก็ตามสามารถสร้าง widget objects ใหม่ได้ ถ้า state อยู่บน widget เอง state จะถูกทำลายทุกครั้งที่ rebuild ด้วยการเก็บ state ไว้ใน object `State` แยกต่างหากที่มีอายุยาวกว่าซึ่ง Flutter จัดการ การสร้าง widget description ใหม่จึงราคาถูก ส่วน state ยังคงอยู่ข้ามการ rebuild
 
 | แนวคิดจาก React | เทียบเท่าใน Flutter |
 |---|---|
@@ -37,7 +37,7 @@ export const quizIndex = [
   {
     q: 'ทำไม Flutter ต้องแยก StatefulWidget ออกจาก State class?',
     options: [
-      'เพื่อบังคับใช้ immutability บน widget tree ในขณะที่ state ยังคงอยู่ข้ามการ rebuild',
+      'เพื่อบังคับใช้ immutability บน widget tree ส่วน state ยังคงอยู่ข้ามการ rebuild',
       'เพราะ Dart ไม่รองรับ fields บน abstract classes',
       'เพื่อให้ hot reload ทำงานได้',
       'เพื่อให้ widget สามารถแชร์ข้ามหลาย tree ได้',

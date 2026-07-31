@@ -8,13 +8,13 @@ import Mermaid from '../../../../components/Mermaid.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
-React DevTools คือ browser extension ที่ใช้ตรวจสอบ component tree, ดู props และ state รวมถึง profile การ render ส่วน Flutter DevTools เป็น web app แบบ standalone ที่รันในเครื่อง ทำหน้าที่เดียวกันสำหรับ Flutter พร้อมเพิ่ม performance timeline, memory graph และการตรวจสอบ network เข้ามาด้วย คุณเปิดใช้งานได้ด้วยคำสั่ง `flutter devtools` หรือเปิดผ่าน IDE โดยตรง ข้อแตกต่างสำคัญคือมันไม่ได้ผูกกับ browser — ใช้งานได้กับทุก target ไม่ว่าจะเป็น iOS, Android, desktop หรือ web
+React DevTools คือ browser extension ที่ใช้ตรวจสอบ component tree, ดู props และ state รวมถึง profile การ render ส่วน Flutter DevTools เป็น web app แบบ standalone ที่รันในเครื่อง ทำหน้าที่เดียวกันสำหรับ Flutter พร้อมเพิ่ม performance timeline, memory graph และการตรวจสอบ network เข้ามาด้วย คุณเปิดใช้งานได้ด้วยคำสั่ง `flutter devtools` หรือเปิดผ่าน IDE โดยตรง ข้อแตกต่างสำคัญคือ Flutter DevTools ไม่ได้ผูกกับ browser — ใช้งานได้กับทุก target ไม่ว่าจะเป็น iOS, Android, desktop หรือ web
 
 ## การเปิด DevTools
 
 ระหว่างที่ `flutter run` กำลังทำงานอยู่ ให้กด `d` ใน terminal หรือคลิก "Open DevTools" ใน VS Code หรือ IntelliJ จากนั้น DevTools จะเปิดขึ้นในแท็บ browser ที่ localhost URL นอกจากนี้ยังสามารถรัน `flutter devtools` แบบ standalone เพื่อเปิด UI โดยไม่ต้องมีแอปรันอยู่ แล้วค่อย connect กับ process ที่รันอยู่ผ่าน URL ได้
 
-นี่คือสิ่งเดียวกับการคลิก icon ของ React DevTools browser extension — ยกเว้นว่ามันใช้งานได้กับทุก Flutter target ไม่ใช่แค่ web
+นี่คือสิ่งเดียวกับการคลิก icon ของ React DevTools browser extension — ยกเว้นว่าใช้งานได้กับทุก Flutter target ไม่ใช่แค่ web
 
 ## ภาพรวมของแต่ละ panel
 
@@ -61,11 +61,11 @@ export const devtoolsFlutterDiagram = `flowchart TB
 
 ## Widget Inspector
 
-Widget Inspector คือคู่เทียบโดยตรงของแท็บ Components ใน React DevTools มันแสดง tree แบบ scrollable ของทุก widget ใน build ปัจจุบัน ตั้งแต่ root `MaterialApp` ลงไปจนถึง leaf อย่าง `Text` และ `Icon`
+Widget Inspector คือคู่เทียบโดยตรงของแท็บ Components ใน React DevTools โดยแสดง tree แบบ scrollable ของทุก widget ใน build ปัจจุบัน ตั้งแต่ root `MaterialApp` ลงไปจนถึง leaf อย่าง `Text` และ `Icon`
 
 **Select Widget Mode** ช่วยให้แตะ widget ใดก็ได้บนอุปกรณ์หรือ emulator แล้ว jump ไปหา widget นั้นใน tree — เหมือนกับการคลิก component ใน React DevTools Components tab เพื่อ highlight ใน browser
 
-**Layout Explorer** แสดง constraint ของ column และ row แบบ visual เมื่อ `Row` หรือ `Column` ล้นหรือทำงานไม่ตามที่คาด Layout Explorer จะแสดง flex factor, ขนาด และพื้นที่ว่างของแต่ละ child ให้เห็นภาพ คิดว่ามันคือ Chrome's flexbox overlay แต่ใช้สำหรับระบบ constraint ของ Flutter แทน CSS
+**Layout Explorer** แสดง constraint ของ column และ row แบบ visual เมื่อ `Row` หรือ `Column` ล้นหรือทำงานไม่ตามที่คาด Layout Explorer จะแสดง flex factor, ขนาด และพื้นที่ว่างของแต่ละ child ให้เห็นภาพ คิดว่าเป็น Chrome's flexbox overlay แต่ใช้สำหรับระบบ constraint ของ Flutter แทน CSS
 
 **Properties panel** แสดง constructor parameter ของ widget และค่าที่ resolve ออกมาแล้ว — เทียบตรงๆ กับ Props panel ใน React DevTools
 
@@ -82,7 +82,7 @@ Frame ที่เกิน budget จะปรากฏเป็นแท่ง
 
 ## แท็บ Memory
 
-แท็บ Memory ไม่มีคู่เทียบตรงๆ ใน React DevTools — มันใกล้เคียงกับแท็บ Memory ใน Chrome DevTools มากกว่า คุณสามารถถ่าย heap snapshot เพื่อระบุ widget leak ได้: `StatefulWidget` ที่ถูกลบออกจาก tree แล้วแต่ `State` object ยังไม่ถูก garbage-collect เพราะ listener, `AnimationController` หรือ `StreamSubscription` ไม่ได้ถูก dispose ใน `dispose()`
+แท็บ Memory ไม่มีคู่เทียบตรงๆ ใน React DevTools — ใกล้เคียงกับแท็บ Memory ใน Chrome DevTools มากกว่า คุณสามารถถ่าย heap snapshot เพื่อระบุ widget leak ได้: `StatefulWidget` ที่ถูกลบออกจาก tree แล้วแต่ `State` object ยังไม่ถูก garbage-collect เพราะ listener, `AnimationController` หรือ `StreamSubscription` ไม่ได้ถูก dispose ใน `dispose()`
 
 allocation tracing view แสดงว่า Dart class ไหนถูกสร้างบ่อยที่สุด ซึ่งมีประโยชน์เมื่อวินิจฉัยการสร้าง object ที่ไม่คาดคิดระหว่าง frame
 

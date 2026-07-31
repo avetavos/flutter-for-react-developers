@@ -77,9 +77,9 @@ Fast Refresh ของ React และ hot reload ของ Flutter แก้ป
 - แก้ไข global หรือ static state
 - เพิ่ม `StatefulWidget` ใหม่ในที่ที่ไม่มีมาก่อน
 
-Fast Refresh ของ React ตรงกับ Flutter hot reload (state ถูกเก็บรักษา) การโหลดหน้าเบราว์เซอร์เต็มรูปแบบ — `Ctrl+R` หรือการรีสตาร์ท `vite` — ตรงกับ Flutter hot restart (state ถูกล้าง)
+Fast Refresh ของ React ตรงกับ Flutter hot reload (state ถูกเก็บรักษา) การโหลดหน้า browser เต็มรูปแบบ — `Ctrl+R` หรือการรีสตาร์ท `vite` — ตรงกับ Flutter hot restart (state ถูกล้าง)
 
-ความแตกต่างสำคัญหนึ่งอย่าง: Flutter hot reload ทำงานบน **อุปกรณ์จริงผ่าน USB** ไม่ใช่แค่ emulator เท่านั้น ไม่จำเป็นต้องใช้เบราว์เซอร์
+ความแตกต่างสำคัญหนึ่งอย่าง: Flutter hot reload ทำงานบน **อุปกรณ์จริงผ่าน USB** ไม่ใช่แค่ emulator เท่านั้น ไม่จำเป็นต้องใช้ browser
 
 ## flutter doctor
 
@@ -92,7 +92,7 @@ Fast Refresh ของ React ตรงกับ Flutter hot reload (state ถู
 - สถานะ plugin ของ VS Code และ Android Studio
 - อุปกรณ์ที่เชื่อมต่อ
 
-คิดว่ามันเหมือนกับการรัน `node -v && npm -v && tsc -v && xcode-select -p && adb version` พร้อมกันทีเดียว พร้อมสรุปผล pass/fail ที่ชัดเจนสำหรับแต่ละส่วนประกอบ
+คิดว่าเหมือนกับการรัน `node -v && npm -v && tsc -v && xcode-select -p && adb version` พร้อมกันทีเดียว พร้อมสรุปผล pass/fail ที่ชัดเจนสำหรับแต่ละส่วนประกอบ
 
 ```bash
 # Standard check

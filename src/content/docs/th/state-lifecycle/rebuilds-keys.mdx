@@ -9,7 +9,7 @@ import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
-React ใช้ virtual DOM diffing algorithm เพื่อตัดสินว่า components ใดควรอัปเดต Flutter ใช้การ reconcile element tree แบบคล้ายกัน แต่มีความแตกต่างสำคัญในวิธีที่คุณควบคุมมัน — หลักๆ ผ่าน `const` constructors และ `Key`s
+React ใช้ virtual DOM diffing algorithm เพื่อตัดสินว่า components ใดควรอัปเดต Flutter ใช้การ reconcile element tree แบบคล้ายกัน แต่มีความแตกต่างสำคัญในวิธีที่คุณควบคุมการ reconcile — หลักๆ ผ่าน `const` constructors และ `Key`s
 
 การเข้าใจว่า Flutter rebuild เมื่อไหร่เป็นสิ่งสำคัญสำหรับการเขียน apps ที่มีประสิทธิภาพ mental model ใกล้เคียงกับ React แต่ tools แตกต่างกัน
 
@@ -17,15 +17,15 @@ React ใช้ virtual DOM diffing algorithm เพื่อตัดสิน�
 
 `build()` ของ widget ถูกเรียกเมื่อ:
 
-1. `setState()` ถูกเรียกบน `State` object ของมัน
-2. Parent ของมัน rebuild (และส่ง widget configuration ใหม่)
-3. `InheritedWidget` ที่มัน depend on เปลี่ยน (เช่น `Theme`, `MediaQuery`)
+1. `setState()` ถูกเรียกบน `State` object ของตัวเอง
+2. Parent ของตัวเอง rebuild (และส่ง widget configuration ใหม่)
+3. `InheritedWidget` ที่ widget นั้น depend on เปลี่ยน (เช่น `Theme`, `MediaQuery`)
 
 ใน React trigger เทียบเท่าคือ: state setter call, parent re-render, หรือ context value change
 
 ## const widgets — zero-cost optimization
 
-ใน React คุณเอื้อมหา `React.memo`, `useMemo`, และ `useCallback` เพื่อป้องกัน re-renders ที่ไม่จำเป็น ใน Flutter คุณเอื้อมหา `const` — และมันมีพลังมากกว่าเพราะทำงานที่ระดับภาษา/compiler
+ใน React คุณเอื้อมหา `React.memo`, `useMemo`, และ `useCallback` เพื่อป้องกัน re-renders ที่ไม่จำเป็น ใน Flutter คุณเอื้อมหา `const` — และมีพลังมากกว่าเพราะทำงานที่ระดับภาษา/compiler
 
 `const` widget เป็น compile-time constant Flutter element reconciliation ตรวจสอบ identity: ถ้า widget reference ใน build output ใหม่ **เหมือนกัน** กับของก่อนหน้า (same object ใน memory) element subtree ทั้งหมดถูกข้าม `const` รับประกัน identity นี้
 
@@ -60,7 +60,7 @@ class Page extends StatelessWidget {
     return Column(
       children: [
         // Subtree นี้เป็น compile-time constant — Flutter จะ
-        // ไม่เรียก build() ของมันอีก แม้ Page จะ rebuild
+        // ไม่เรียก build() ของตัวเองอีก แม้ Page จะ rebuild
         const SizedBox(height: 16),
         const Icon(Icons.star, size: 32),
         const Header(title: 'My App'),  // const ด้วย — free skip
@@ -73,7 +73,7 @@ class Page extends StatelessWidget {
 
 ## Keys — identity ข้ามการ rebuild
 
-`key` prop ของ React บอก reconciler ว่า: "element นี้มี identity นี้ — match มันกับ element เดิมใน render ก่อนหน้า แม้ position ใน list จะเปลี่ยน" `Key` ของ Flutter ทำหน้าที่เหมือนกันทุกประการ
+`key` prop ของ React บอก reconciler ว่า: "element นี้มี identity นี้ — match กับ element เดิมใน render ก่อนหน้า แม้ position ใน list จะเปลี่ยน" `Key` ของ Flutter ทำหน้าที่เหมือนกันทุกประการ
 
 ถ้าไม่มี `Key` Flutter จะ match widgets ตาม **type และ position** ถ้าคุณ reorder list ของ stateful items Flutter อาจ match `State` object ผิดกับ widget ผิด — เหมือน bug ใน React ที่ไม่มี list keys
 
@@ -113,7 +113,7 @@ class TodoList extends StatelessWidget {
 - **Type + position matching** ถ้าไม่มี `Key` ทั้ง React และ Flutter จะ match elements ตาม type และ position ใน tree สำหรับ static lists ใช้ได้ดี สำหรับ dynamic/reordered lists ทำให้ state ไหลระหว่าง items
 - **`ValueKey(id)` = React `key={id}`** ใช้ `ValueKey` เมื่อคุณมี stable unique identifier (database ID, UUID) Flutter เลือก `State` object ที่ถูกต้องแม้หลัง reorder
 - **`ObjectKey(object)` = React `key={object}`** ใช้เมื่อ identity ของ object เองเป็น key (reference equality) ไม่ใช่ scalar ID
-- **`UniqueKey()` = forced remount** สร้าง `Key` ใหม่ทุก build รับประกันว่า `State` เก่าถูกทิ้งและสร้างใหม่ เทียบเท่ากับการเปลี่ยน React `key` เป็นค่าใหม่เพื่อ force full unmount/mount cycle ใช้อย่างประหยัด — มัน destroy state
+- **`UniqueKey()` = forced remount** สร้าง `Key` ใหม่ทุก build รับประกันว่า `State` เก่าถูกทิ้งและสร้างใหม่ เทียบเท่ากับการเปลี่ยน React `key` เป็นค่าใหม่เพื่อ force full unmount/mount cycle ใช้อย่างประหยัด — เพราะทุกครั้งคือการทิ้ง state ทั้งหมด
 - **`GlobalKey`** = ไม่มีเทียบเท่า React ให้เข้าถึง `State` หรือ `RenderObject` ของ widget จากที่ใดก็ได้ใน tree ไม่ค่อยต้องการ; ใช้สำหรับ `Form` validation (`_formKey.currentState!.validate()`) หรือ measure widget sizes
 - **`const` คือ primary rebuild optimization** React devs มักเอื้อมหา `useMemo` ทุกที่; ใน Flutter คำตอบที่ idiomatic คือ mark leaf widgets และ static sub-trees เป็น `const` และปล่อยให้ compiler กำจัด rebuild cost ทั้งหมด
 

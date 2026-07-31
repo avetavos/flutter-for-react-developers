@@ -9,7 +9,7 @@ import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
-`Future<T>` ใน Dart คือ `Promise<T>` ใน JavaScript ทั้งคู่แทนค่า single value ที่ยังไม่พร้อมใช้งาน — มันจะมาถึง (หรือล้มเหลว) ในบางจุดในอนาคต แนวคิดทุกอย่างที่คุณรู้จาก JS Promise แมปได้โดยตรง: `.then()`, `.catch()`, `async`/`await`, `try`/`catch` และการประมวลผลแบบ parallel ด้วย `Future.wait` / `Promise.all` mental model เหมือนกัน เพียงแต่ API surface เปลี่ยนไปเล็กน้อย
+`Future<T>` ใน Dart คือ `Promise<T>` ใน JavaScript ทั้งคู่แทนค่า single value ที่ยังไม่พร้อมใช้งาน — จะมาถึง (หรือล้มเหลว) ในบางจุดในอนาคต แนวคิดทุกอย่างที่คุณรู้จาก JS Promise แมปได้โดยตรง: `.then()`, `.catch()`, `async`/`await`, `try`/`catch` และการประมวลผลแบบ parallel ด้วย `Future.wait` / `Promise.all` mental model เหมือนกัน เพียงแต่ API surface เปลี่ยนไปเล็กน้อย
 
 ## เปรียบเทียบแบบ side-by-side
 
@@ -70,9 +70,9 @@ Future<void> loadUserAsync(String id) async {
 
 <Diff title="Future vs Promise">
 
-- **`.catchError()` vs `.catch()`** ตัวจัดการ error แบบ chain style ของ Dart คือ `.catchError(fn)` ไม่ใช่ `.catch(fn)` ในทางปฏิบัติ `async`/`await` กับ `try`/`catch` เป็น idiomatic มากกว่าใน Dart — เช่นเดียวกับที่มันกลายเป็นใน modern JS
+- **`.catchError()` vs `.catch()`** ตัวจัดการ error แบบ chain style ของ Dart คือ `.catchError(fn)` ไม่ใช่ `.catch(fn)` ในทางปฏิบัติ `async`/`await` กับ `try`/`catch` เป็น idiomatic มากกว่าใน Dart — เช่นเดียวกับที่กลายเป็นใน modern JS
 - **`void` Futures.** Dart มี `Future<void>` สำหรับ async operations ที่ไม่ผลิตค่า (side effects, fire-and-forget) JS Promises resolve เป็น `undefined` โดยปริยาย แต่ Dart ทำให้การไม่มี return value ชัดเจนในประเภท
-- **`Future.wait` vs `Promise.all`.** เพื่อรัน Future หลายตัวพร้อมกันและรอให้ทุกตัวเสร็จ ให้ใช้ `Future.wait([futureA, futureB])` มันคืนค่าเป็น `Future<List<T>>` เหมือนกับ `Promise.all` ทุกประการ
+- **`Future.wait` vs `Promise.all`.** เพื่อรัน Future หลายตัวพร้อมกันและรอให้ทุกตัวเสร็จ ให้ใช้ `Future.wait([futureA, futureB])` ซึ่งคืนค่าเป็น `Future<List<T>>` เหมือนกับ `Promise.all` ทุกประการ
 - **`Completer` vs `new Promise(resolve, reject)`.** เมื่อคุณต้องการ resolve หรือ reject Future ด้วยตนเอง (เช่น การ wrap callback API) ให้ใช้ `Completer<T>` เรียก `completer.complete(value)` หรือ `completer.completeError(err)` — ตัวเทียบเท่าโดยตรงของ arguments `resolve`/`reject` ใน Promise constructor
 - **ประเภทของ Error.** JS `catch (err)` ให้คุณได้ `unknown` แต่ Dart `catch (e)` ให้คุณได้ `Object` — คุณสามารถเพิ่ม `on SpecificException catch (e)` เพื่อ catch typed errors ซึ่งใกล้เคียงกับการ check `instanceof` แบบ typed
 

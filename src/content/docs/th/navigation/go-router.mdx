@@ -8,7 +8,7 @@ import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
-`Navigator` แบบ built-in ของ Flutter เป็น imperative และไม่มีแนวคิดของ URL path หรือ nested route สำหรับทุกอย่างที่เกินกว่า simple push/pop flow — deep links, URL params, nested navigation, web URLs — คุณต้องใช้แพ็กเกจ `go_router` อย่างเป็นทางการ มันนำ declarative route configuration มาซึ่งตรงกับ `createBrowserRouter` ของ React Router v6 เกือบทุกประการ
+`Navigator` แบบ built-in ของ Flutter เป็น imperative และไม่มีแนวคิดของ URL path หรือ nested route สำหรับทุกอย่างที่เกินกว่า simple push/pop flow — deep links, URL params, nested navigation, web URLs — คุณต้องใช้แพ็กเกจ `go_router` อย่างเป็นทางการ `go_router` ให้ declarative route configuration ที่ตรงกับ `createBrowserRouter` ของ React Router v6 เกือบทุกประการ
 
 `go_router` ดูแลโดย Flutter team และเป็น routing solution ที่แนะนำอย่างเป็นทางการสำหรับแอป Flutter ใน production
 

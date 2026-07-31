@@ -9,7 +9,7 @@ import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
-ใน React form inputs เป็นแบบ "controlled" — คุณผูก `value` prop เข้ากับ state และอัปเดต state นั้นผ่าน `onChange` handler Flutter ใช้แนวทางที่แตกต่างกันเล็กน้อย: `TextEditingController` ทำหน้าที่เหมือน ref ที่เก็บค่าข้อความปัจจุบัน และคุณแนบมันเข้ากับ `TextField` การอ่านค่าคือ `controller.text` แทนที่จะเป็น `event.target.value` และไม่จำเป็นต้อง re-render เพื่อดักจับ input
+ใน React form inputs เป็นแบบ "controlled" — คุณผูก `value` prop เข้ากับ state และอัปเดต state นั้นผ่าน `onChange` handler Flutter ใช้แนวทางที่แตกต่างกันเล็กน้อย: `TextEditingController` ทำหน้าที่เหมือน ref ที่เก็บค่าข้อความปัจจุบัน แล้วคุณแนบ controller เข้ากับ `TextField` การอ่านค่าคือ `controller.text` แทนที่จะเป็น `event.target.value` และไม่จำเป็นต้อง re-render เพื่อดักจับ input
 
 สำหรับการ validate form แบบสมบูรณ์ Flutter มี `Form` widget คู่กับ `GlobalKey<FormState>` แต่ละ `TextFormField` ภายในรับ `validator` callback การเรียก `formKey.currentState!.validate()` จะ trigger ทุก validator พร้อมกันและคืนค่า `true` เฉพาะเมื่อทุกตัวผ่าน — เทียบเท่ากับการสะสม error state แบบ per-field และตรวจสอบด้วยตนเองใน React
 

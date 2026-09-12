@@ -1,6 +1,6 @@
 ---
 title: 'pub & pubspec.yaml'
-description: 'flutter pub add และ pubspec.yaml เทียบกับ npm และ package.json — dependencies, version constraints และการประกาศ assets'
+description: 'flutter pub add และ pubspec.yaml เทียบกับ npm และ package.json — dependencies, version constraints, การประกาศ assets และการย้าย Material กับ Cupertino ไปเป็น package บน pub.dev'
 ---
 
 import ReactFlutter from '../../../../components/ReactFlutter.astro';
@@ -137,6 +137,36 @@ flutter:
 - **`flutter_test` คือ RTL equivalent.** มาพร้อม SDK จึงปรากฏเป็น `sdk: flutter` dependency แทนที่จะเป็น pub.dev package ที่ pin version
 
 </Diff>
+
+## Material และ Cupertino กำลังกลายเป็น package
+
+ทุกตัวอย่างในคอร์สนี้เริ่มด้วยบรรทัดเดียวกัน:
+
+```dart
+import 'package:flutter/material.dart';
+```
+
+บรรทัดนี้ import มาจากตัว SDK เอง ไม่ได้มาจาก pub.dev นี่คือเหตุผลที่คุณไม่เคยเห็น Material อยู่ใน `dependencies` เลย Flutter 3.47 เริ่มเปลี่ยนเรื่องนี้ ตอนนี้ Material และ Cupertino ถูก ship เป็น package แยกบน pub.dev ด้วยในชื่อ `material_ui` และ `cupertino_ui` ทั้งคู่อยู่ที่ 1.0 และคุมเวอร์ชันแยกจาก SDK
+
+เหตุผลเบื้องหลังคุ้นเคยดีสำหรับ React developer มันคือความต่างระหว่าง widget library ที่ฝังมากับ runtime กับ library ที่คุณติดตั้งเองแบบ `@mui/material` การแยกออกมาทำให้ design system ปล่อย fix และ component ใหม่ได้โดยไม่ต้องรอ SDK release และทำให้แอปของคุณ pin version ได้
+
+ตัว import จาก SDK ยังใช้ได้อยู่ตอนนี้ ของที่อยู่ใน SDK มีแผนจะถูก deprecate อย่างเป็นทางการใน stable release เดือนพฤศจิกายน และ Flutter เตรียม migration มาให้แล้ว:
+
+```bash
+dart fix --apply --code=migrate_design_widgets
+```
+
+คำสั่งนี้จะเขียน import ใหม่และเพิ่ม package เข้า `pubspec.yaml`:
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  material_ui: ^1.2.0
+  cupertino_ui: ^1.0.0
+```
+
+ยังไม่มีอะไรในคอร์สนี้ที่ต้อง migrate — import จาก SDK ยังถูกต้องบน 3.47 ให้รัน `dart fix` ตอนเริ่ม project ใหม่ และอ่าน deprecation note ของ release ที่คุณใช้อยู่ก่อน migrate แอปเดิม
 
 export const quizPubPubspec = [
   {

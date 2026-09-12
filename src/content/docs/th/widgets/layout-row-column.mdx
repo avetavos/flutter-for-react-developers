@@ -55,7 +55,7 @@ export const layoutFlutter = `// Flutter Row / Column
 Row(
   mainAxisAlignment: MainAxisAlignment.spaceBetween,
   crossAxisAlignment: CrossAxisAlignment.center,
-  spacing: 8,          // Flutter 3.27+ gap shorthand
+  spacing: 8,          // gap shorthand (Flutter 3.27+)
   children: [/* ... */],
 )
 
@@ -95,7 +95,7 @@ class NavBar extends StatelessWidget {
 - **`mainAxisAlignment`** แมปไปยัง `justify-content` โดยจัด child **ตามแนว** axis ของ widget นั้นเอง คือแนวนอนสำหรับ `Row` และแนวตั้งสำหรับ `Column`
 - **`crossAxisAlignment`** แมปไปยัง `align-items` โดยจัด child ในแนว **ตั้งฉาก** กับ axis ของ widget นั้นเอง
 - **`Expanded`** ห่อ child ตัวเดียวแล้วให้พฤติกรรม `flex: 1` คือเติมพื้นที่ที่เหลือ ห่อ child หลายตัวด้วย `Expanded` เพื่อแบ่งพื้นที่ตามสัดส่วน (ใช้ property `flex:` บน `Expanded` เพื่อกำหนดอัตราส่วนเอง)
-- **`spacing`** (Flutter 3.27+) คือสิ่งที่เทียบเท่าโดยตรงกับ `gap` ของ CSS สำหรับ Flutter เวอร์ชันเก่ากว่าให้แทรก `SizedBox(width: 8)` หรือ `SizedBox(height: 8)` ระหว่าง child ด้วยตัวเอง
+- **`spacing`** คือสิ่งที่เทียบเท่าโดยตรงกับ `gap` ของ CSS มันเข้ามาตั้งแต่ Flutter 3.27 จึงใช้ได้ในทุก release ที่ยัง support อยู่ ถ้าใช้ SDK เก่ากว่านั้นให้แทรก `SizedBox(width: 8)` หรือ `SizedBox(height: 8)` ระหว่าง child ด้วยตัวเอง
 - **ไม่มี `width: 100%` โดยปริยายบน `Column`** `Column` จะกว้างเท่ากับ child ที่กว้างที่สุดของตัวเองเท่านั้น เว้นแต่คุณจะ constrain เอง ให้ห่อด้วย `SizedBox(width: double.infinity)` หรือใช้ `crossAxisAlignment: CrossAxisAlignment.stretch` เพื่อเติมเต็ม parent
 
 </Diff>
@@ -211,7 +211,7 @@ export const quizLayout = [
     answer: 2,
   },
   {
-    q: 'อะไรคือวิธีที่ง่ายที่สุดใน Flutter ที่เทียบเท่ากับ `gap: 8px` ของ CSS ระหว่าง child ของ Row (Flutter 3.27+)?',
+    q: 'อะไรคือวิธีที่ง่ายที่สุดใน Flutter ที่เทียบเท่ากับ `gap: 8px` ของ CSS ระหว่าง child ของ Row?',
     options: [
       'ห่อ child แต่ละตัวด้วย Padding',
       'แทรก SizedBox(width: 8) ระหว่าง child แต่ละตัวด้วยตัวเอง',

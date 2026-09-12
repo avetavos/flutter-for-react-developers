@@ -1,6 +1,6 @@
 ---
 title: 'พื้นฐาน Navigator'
-description: 'Navigator.push และ Navigator.pop เทียบกับ useNavigate และ history.push — อธิบาย navigation stack ของ Flutter สำหรับนักพัฒนา React'
+description: 'Navigator.push และ Navigator.pop เทียบกับ useNavigate และ history.push — อธิบาย navigation stack ของ Flutter สำหรับนักพัฒนา React รวมถึง predictive back บน Android'
 ---
 
 import ReactFlutter from '../../../../components/ReactFlutter.astro';
@@ -77,11 +77,34 @@ class DetailScreen extends StatelessWidget {
 
 - **ต้องมี Context.** `Navigator.push` เป็น static method ที่รับ `BuildContext` Flutter resolve `Navigator` ancestor ที่ใกล้ที่สุดจาก context นั้น — คล้ายกับที่ hooks ของ react-router resolve `Router` ที่ใกล้ที่สุดผ่าน React context
 - **โมเดล Stack ไม่ใช่ URL.** `Navigator.push` เพิ่ม entry ใหม่เข้า in-memory stack จริง ๆ ไม่มีการเปลี่ยน URL บนมือถือ (แม้ Flutter Web จะอัปเดต browser URL)
-- **`MaterialPageRoute` คือ route object.** route object นี้ wrap builder function และให้ transition animation ที่เหมาะสมกับ platform (slide บน iOS, fade บน Android) React Router ไม่มีสิ่งที่เทียบตรงกันเพราะเลื่อน transition ให้กับ CSS
+- **`MaterialPageRoute` คือ route object.** route object นี้ wrap builder function และให้ transition animation ที่เหมาะสมกับ platform (slide บน iOS, predictive back บน Android) React Router ไม่มีสิ่งที่เทียบตรงกันเพราะเลื่อน transition ให้กับ CSS
 - **`Navigator.pop` vs `navigate(-1)`.** `pop` ลบ entry บนสุดออกจาก Flutter stack `navigate(-1)` ย้อนกลับใน browser history ทั้งคู่ทำให้ "กลับ" ได้ แต่ `pop` เป็น synchronous และไม่ตรวจสอบ URL
 - **Back gesture ได้มาฟรี.** `Navigator` เชื่อมต่อปุ่มย้อนกลับ Android และ edge-swipe ของ iOS โดยอัตโนมัติ ใน react-router คุณต้องจัดการ `history.block` หรือ `useBeforeUnload` เอง
 
 </Diff>
+
+## Predictive back บน Android
+
+ตั้งแต่ Flutter 3.38 page transition เริ่มต้นบน Android คือ `PredictiveBackPageTransitionsBuilder` เมื่อผู้ใช้ลากนิ้วจากขอบจอ Android จะค่อย ๆ ลอก route ปัจจุบันออกและแสดง preview ของหน้าจอที่อยู่ข้างล่างแบบ real-time ผู้ใช้จึงเห็นก่อนว่า "ย้อนกลับ" จะไปที่ไหนก่อนตัดสินใจปล่อยนิ้ว บนเครื่องที่ไม่รองรับ predictive back จะ fallback ไปเป็น `FadeForwardsPageTransitionsBuilder`
+
+สิ่งที่ใกล้เคียงที่สุดที่คุณคุ้นเคยคือ edge-swipe preview ของ Safari บน iOS หรือ screen transition ใน React Native ที่ต่อกับ gesture handler ส่วนบน browser `history.back()` ไม่มี preview ให้เลย หน้าเว็บถูกแทนที่ทันที
+
+คุณได้สิ่งนี้มาฟรีจาก `MaterialPageRoute` ไม่ต้อง opt-in อะไร ถ้าอยากกลับไปใช้ animation แบบก่อน 3.38 ให้ set ใน theme ตรง ๆ:
+
+```dart
+MaterialApp(
+  theme: ThemeData(
+    pageTransitionsTheme: const PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: ZoomPageTransitionsBuilder(),
+      },
+    ),
+  ),
+  home: const MyFirstScreen(),
+);
+```
+
+มีผลข้างเคียงหนึ่งอย่างที่ควรรู้ตอนเขียน widget test: transition ยาวขึ้นเป็น 450ms จากเดิม 300ms การ pump ด้วย duration ที่ hard-code ไว้จะพัง ให้ใช้ `TransitionDurationObserver` กับ `observer.pumpPastTransition(tester)` เพื่อให้ test ไม่ผูกกับความยาว animation
 
 ## ตัวอย่างที่รันได้
 

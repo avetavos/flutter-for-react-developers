@@ -1,6 +1,6 @@
 ---
 title: 'Navigator Basics'
-description: 'Navigator.push and Navigator.pop vs useNavigate and history.push — the Flutter navigation stack explained for React developers.'
+description: 'Navigator.push and Navigator.pop vs useNavigate and history.push — the Flutter navigation stack explained for React developers, including predictive back on Android.'
 ---
 
 import ReactFlutter from '../../../../components/ReactFlutter.astro';
@@ -77,11 +77,34 @@ class DetailScreen extends StatelessWidget {
 
 - **Context required.** `Navigator.push` is a static method that takes a `BuildContext`. Flutter resolves the nearest `Navigator` ancestor from that context — similar to how react-router's hooks resolve the nearest `Router` via React context.
 - **Stack model, not URL model.** `Navigator.push` literally adds a new entry to an in-memory stack. There is no URL change on mobile (though Flutter Web does update the browser URL).
-- **`MaterialPageRoute` is the route object.** It wraps a builder function and provides the platform-appropriate transition animation (slide on iOS, fade on Android). React Router has no direct equivalent because it defers transitions to CSS.
+- **`MaterialPageRoute` is the route object.** It wraps a builder function and provides the platform-appropriate transition animation (slide on iOS, predictive back on Android). React Router has no direct equivalent because it defers transitions to CSS.
 - **`Navigator.pop` vs `navigate(-1)`.** `pop` removes the top entry from the Flutter stack. `navigate(-1)` steps back in browser history. Both achieve "go back," but `pop` is synchronous and does not consult a URL.
 - **Back gestures are free.** The `Navigator` wires up Android back button and iOS edge-swipe automatically. In react-router you must manage `history.block` or `useBeforeUnload` yourself.
 
 </Diff>
+
+## Predictive back on Android
+
+Since Flutter 3.38 the default Android page transition is `PredictiveBackPageTransitionsBuilder`. As the user drags from the screen edge, Android peels the current route away and shows a live preview of the screen underneath — so they can see where "back" leads before committing to it. On devices without predictive back support it falls back to `FadeForwardsPageTransitionsBuilder`.
+
+The closest thing you know is the iOS Safari edge-swipe preview, or a React Native screen transition wired to a gesture handler. In the browser, `history.back()` gives you no preview at all: the page is simply replaced.
+
+You get this for free with `MaterialPageRoute` — there is nothing to opt into. To go back to the pre-3.38 animation, set it explicitly in your theme:
+
+```dart
+MaterialApp(
+  theme: ThemeData(
+    pageTransitionsTheme: const PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: ZoomPageTransitionsBuilder(),
+      },
+    ),
+  ),
+  home: const MyFirstScreen(),
+);
+```
+
+One side effect worth knowing when you write widget tests: the transition is now 450ms rather than 300ms. Pumping a hard-coded duration will break. Use `TransitionDurationObserver` and `observer.pumpPastTransition(tester)` so the test stays independent of the animation length.
 
 ## Runnable example
 

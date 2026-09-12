@@ -91,10 +91,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '24'
       - run: npm ci
       - run: npm run lint
       - run: npm test -- --watchAll=false
@@ -108,10 +108,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.0'
+          flutter-version: '3.47.0'
           channel: 'stable'
       - run: flutter pub get
       - run: flutter analyze
@@ -136,11 +136,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.0'
+          flutter-version: '3.47.0'
           channel: 'stable'
 
       - name: Install dependencies
@@ -164,6 +164,7 @@ jobs:
 - **`subosito/flutter-action` replaces `actions/setup-node`.** The action pins the Flutter SDK version and channel, ensuring reproducible CI builds. Use `channel: 'stable'` for production pipelines.
 - **`flutter pub get` replaces `npm ci`.** There is no `--frozen-lockfile` flag equivalent; `flutter pub get` always uses `pubspec.lock` when it exists, so the behavior is the same as `npm ci` for reproducibility.
 - **`flutter analyze` replaces both `npm run lint` and `npx tsc --noEmit`.** One command, one step.
+- **Android projects use Flutter's built-in Kotlin.** Since Flutter 3.44, `flutter create` no longer wires a separate Kotlin Gradle plugin version into your project — the SDK supplies it. An older project still carrying its own Kotlin version can keep building, but `flutter doctor` and the build logs will point you at the migration when it stops matching.
 
 </Diff>
 

@@ -1,6 +1,6 @@
 ---
 title: 'Flutter Setup & Toolchain'
-description: 'Install Flutter and configure your editor — mapped to npm, Vite, and VS Code concepts you already know.'
+description: 'Install Flutter 3.47 and configure your editor — mapped to npm, Vite, and VS Code concepts you already know, plus the platform requirements that changed.'
 ---
 
 import Diff from '../../../../components/Diff.astro';
@@ -29,6 +29,22 @@ flutter doctor
 ```
 
 `flutter doctor` is Flutter's equivalent of `npx create-react-app --check` — it scans for missing dependencies (Xcode, Android Studio, connected devices) and tells you exactly what to fix.
+
+## Which versions this course targets
+
+Everything here is written against **Flutter 3.47** (the current stable) on the React 19 side of the comparison. Flutter's stable channel ships roughly every quarter, so a few platform requirements are worth checking before you start:
+
+| Target | Requirement on Flutter 3.47 |
+|---|---|
+| iOS | iOS 15 or later (raised from 13) |
+| macOS | macOS 12 or later (raised from 10.15) |
+| Xcode | Xcode 27 supported |
+| Renderer | Impeller is the default on iOS, Android, macOS, Windows, and Linux |
+| iOS plugins | Swift Package Manager; CocoaPods is in maintenance mode |
+
+Impeller replaced Skia as the renderer precisely to kill the "first animation stutters" problem: shaders are compiled at build time instead of being discovered at runtime. If you have read older Flutter posts complaining about jank on the first frame of an animation, that is the problem Impeller solves, and on 3.47 it is on by default everywhere.
+
+The Swift Package Manager move matters the first time you add a plugin with native iOS code. Most popular plugins have already migrated; if you hit one that has not, you will see CocoaPods fall back in. That still works today, but treat an unmigrated plugin as a maintenance signal — the same way you would treat an npm package whose last publish was three years ago.
 
 ## The `flutter` CLI vs npm / Vite
 
@@ -165,6 +181,16 @@ export const quizSetup = [
       'Rebuilds the native app binary',
     ],
     answer: 2,
+  },
+  {
+    q: 'What problem does Impeller, the default renderer on Flutter 3.47, solve?',
+    options: [
+      'It lets Flutter run on the web without WebAssembly',
+      'It compiles shaders at build time, removing the stutter on an animation’s first frame',
+      'It replaces Dart with a faster language',
+      'It removes the need for platform-specific folders',
+    ],
+    answer: 1,
   },
 ];
 

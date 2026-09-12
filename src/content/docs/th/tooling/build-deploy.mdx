@@ -90,10 +90,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '24'
       - run: npm ci
       - run: npm run lint
       - run: npm test -- --watchAll=false
@@ -107,10 +107,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.0'
+          flutter-version: '3.47.0'
           channel: 'stable'
       - run: flutter pub get
       - run: flutter analyze
@@ -135,11 +135,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.0'
+          flutter-version: '3.47.0'
           channel: 'stable'
 
       - name: Install dependencies
@@ -163,6 +163,7 @@ jobs:
 - **`subosito/flutter-action` แทน `actions/setup-node`.** action นี้ pin Flutter SDK version และ channel เพื่อให้ CI builds reproducible ใช้ `channel: 'stable'` สำหรับ production pipelines
 - **`flutter pub get` แทน `npm ci`.** ไม่มี flag `--frozen-lockfile` equivalent; `flutter pub get` ใช้ `pubspec.lock` เสมอเมื่อมีอยู่ จึง behave เหมือนกับ `npm ci` ในแง่ reproducibility
 - **`flutter analyze` แทนทั้ง `npm run lint` และ `npx tsc --noEmit`.** คำสั่งเดียว ขั้นตอนเดียว
+- **project Android ใช้ Kotlin ที่มากับ Flutter.** ตั้งแต่ Flutter 3.44 `flutter create` ไม่ได้ใส่เวอร์ชันของ Kotlin Gradle plugin แยกเข้า project ของคุณอีกแล้ว SDK เป็นคนจัดให้ project เก่าที่ยังถือเวอร์ชัน Kotlin ของตัวเองอยู่ยัง build ได้ แต่ `flutter doctor` และ build log จะชี้ไปที่ migration เมื่อเวอร์ชันเริ่มไม่ตรงกัน
 
 </Diff>
 

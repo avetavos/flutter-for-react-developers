@@ -1,6 +1,6 @@
 ---
 title: 'pub & pubspec.yaml'
-description: 'flutter pub add and pubspec.yaml vs npm and package.json — dependencies, version constraints, and asset declarations.'
+description: 'flutter pub add and pubspec.yaml vs npm and package.json — dependencies, version constraints, asset declarations, and the move of Material and Cupertino to pub.dev packages.'
 ---
 
 import ReactFlutter from '../../../../components/ReactFlutter.astro';
@@ -137,6 +137,36 @@ flutter:
 - **`flutter_test` is the RTL equivalent.** It ships with the SDK, so it appears as an `sdk: flutter` dependency rather than a version-pinned pub.dev package.
 
 </Diff>
+
+## Material and Cupertino are becoming packages
+
+Every example in this course starts with the same line:
+
+```dart
+import 'package:flutter/material.dart';
+```
+
+That import comes from the SDK itself, not from pub.dev — which is why you never saw Material listed in `dependencies`. Flutter 3.47 starts changing that. Material and Cupertino now also ship as standalone pub.dev packages, `material_ui` and `cupertino_ui`, both at 1.0 and versioned independently of the SDK.
+
+For a React developer the motivation is familiar: it is the difference between a widget library baked into the runtime and one you install like `@mui/material`. Decoupling lets the design system ship fixes and new components without waiting for an SDK release, and lets your app pin a version.
+
+The SDK imports still work today. The in-SDK copies are scheduled for formal deprecation in the November stable release, and Flutter ships a migration for it:
+
+```bash
+dart fix --apply --code=migrate_design_widgets
+```
+
+That rewrites the imports and adds the packages to `pubspec.yaml`:
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  material_ui: ^1.2.0
+  cupertino_ui: ^1.0.0
+```
+
+Nothing in this course requires the migration yet — the SDK import is still correct on 3.47. Run `dart fix` when you start a new project, and read the deprecation note in the release you are on before migrating an existing app.
 
 export const quizPubPubspec = [
   {

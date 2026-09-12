@@ -55,7 +55,7 @@ export const layoutFlutter = `// Flutter Row / Column
 Row(
   mainAxisAlignment: MainAxisAlignment.spaceBetween,
   crossAxisAlignment: CrossAxisAlignment.center,
-  spacing: 8,          // Flutter 3.27+ gap shorthand
+  spacing: 8,          // gap shorthand (Flutter 3.27+)
   children: [/* ... */],
 )
 
@@ -95,7 +95,7 @@ class NavBar extends StatelessWidget {
 - **`mainAxisAlignment`** maps to `justify-content`. It aligns children **along** the widget's own axis: horizontal for `Row`, vertical for `Column`.
 - **`crossAxisAlignment`** maps to `align-items`. It aligns children **perpendicular** to the widget's own axis.
 - **`Expanded`** wraps a single child and gives it `flex: 1` behaviour, filling remaining space. Wrap multiple children in `Expanded` to split space proportionally (use the `flex:` property on `Expanded` for custom ratios).
-- **`spacing`** (Flutter 3.27+) is the direct equivalent of CSS `gap`. For older Flutter, insert `SizedBox(width: 8)` or `SizedBox(height: 8)` between children manually.
+- **`spacing`** is the direct equivalent of CSS `gap`. It landed in Flutter 3.27, so it is available in every supported release. On an older SDK, insert `SizedBox(width: 8)` or `SizedBox(height: 8)` between children manually.
 - **No implicit `width: 100%` on `Column`** — a `Column` takes only as much width as its widest child unless you constrain it. Wrap in a `SizedBox(width: double.infinity)` or use `crossAxisAlignment: CrossAxisAlignment.stretch` to fill the parent.
 
 </Diff>
@@ -211,7 +211,7 @@ export const quizLayout = [
     answer: 2,
   },
   {
-    q: 'What is the simplest Flutter equivalent of CSS `gap: 8px` between Row children (Flutter 3.27+)?',
+    q: 'What is the simplest Flutter equivalent of CSS `gap: 8px` between Row children?',
     options: [
       'Wrap each child in Padding',
       'Insert SizedBox(width: 8) between each child manually',

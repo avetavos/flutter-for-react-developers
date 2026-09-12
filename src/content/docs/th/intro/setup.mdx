@@ -1,6 +1,6 @@
 ---
 title: 'Flutter Setup & Toolchain'
-description: 'ติดตั้ง Flutter และ configure editor — เทียบกับ npm, Vite, และ VS Code ที่คุ้นเคยอยู่แล้ว'
+description: 'ติดตั้ง Flutter 3.47 และ configure editor — เทียบกับ npm, Vite, และ VS Code ที่คุ้นเคยอยู่แล้ว พร้อมข้อกำหนดของ platform ที่เปลี่ยนไป'
 ---
 
 import Diff from '../../../../components/Diff.astro';
@@ -29,6 +29,22 @@ flutter doctor
 ```
 
 `flutter doctor` เหมือน `npx create-react-app --check` ของ Flutter — scan หา dependency ที่ขาด (Xcode, Android Studio, connected devices) และบอกว่าต้องแก้อะไร
+
+## คอร์สนี้อิงเวอร์ชันไหน
+
+ทุกอย่างในคอร์สนี้เขียนตาม **Flutter 3.47** (stable ปัจจุบัน) และเทียบกับ React 19 ฝั่ง React stable channel ของ Flutter ออกประมาณไตรมาสละครั้ง จึงมีข้อกำหนดของ platform สองสามข้อที่ควรเช็คก่อนเริ่ม:
+
+| เป้าหมาย | ข้อกำหนดบน Flutter 3.47 |
+|---|---|
+| iOS | iOS 15 ขึ้นไป (ขยับจาก 13) |
+| macOS | macOS 12 ขึ้นไป (ขยับจาก 10.15) |
+| Xcode | รองรับ Xcode 27 |
+| Renderer | Impeller เป็นค่าเริ่มต้นบน iOS, Android, macOS, Windows และ Linux |
+| iOS plugin | Swift Package Manager ส่วน CocoaPods อยู่ในสถานะ maintenance |
+
+Impeller เข้ามาแทน Skia เพื่อแก้ปัญหา "animation แรกกระตุก" โดยตรง เพราะ shader ถูก compile ตอน build แทนที่จะไปค้นพบเอาตอน runtime ถ้าคุณเคยอ่านบทความ Flutter เก่า ๆ ที่บ่นเรื่อง jank ในเฟรมแรกของ animation นั่นคือปัญหาที่ Impeller แก้ และบน 3.47 มันเปิดเป็นค่าเริ่มต้นทุก platform แล้ว
+
+เรื่อง Swift Package Manager จะมีผลครั้งแรกตอนคุณเพิ่ม plugin ที่มี native code ฝั่ง iOS plugin ยอดนิยมส่วนใหญ่ migrate ไปแล้ว ถ้าเจอตัวที่ยังไม่ migrate คุณจะเห็น CocoaPods ถูกใช้แทน ซึ่งยังทำงานได้อยู่ตอนนี้ แต่ให้มอง plugin ที่ยังไม่ migrate เป็นสัญญาณเรื่องการดูแลรักษา แบบเดียวกับที่คุณมอง npm package ที่ publish ครั้งสุดท้ายเมื่อสามปีก่อน
 
 ## `flutter` CLI vs npm / Vite
 
@@ -165,6 +181,16 @@ export const quizSetup = [
       'Rebuild native app binary',
     ],
     answer: 2,
+  },
+  {
+    q: 'Impeller ซึ่งเป็น renderer เริ่มต้นบน Flutter 3.47 แก้ปัญหาอะไร?',
+    options: [
+      'ทำให้ Flutter รันบน web ได้โดยไม่ต้องใช้ WebAssembly',
+      'compile shader ตอน build จึงไม่มีอาการกระตุกในเฟรมแรกของ animation',
+      'แทนที่ Dart ด้วยภาษาที่เร็วกว่า',
+      'ทำให้ไม่ต้องมี folder เฉพาะของแต่ละ platform',
+    ],
+    answer: 1,
   },
 ];
 

@@ -8,6 +8,19 @@ import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
+import Mermaid from '../../../../components/Mermaid.astro';
+
+export const lifecycleDiagram = `flowchart TD
+  n1["createState()"] --> n2["initState()<br/>mount: เริ่ม controllers, subscriptions, fetch data เริ่มต้น"]
+  n2 --> n3["didChangeDependencies()<br/>เรียกครั้งแรก แล้วเรียกอีกถ้า InheritedWidget เปลี่ยน"]
+  n3 --> n4["build()<br/>pure UI description; ทำงานทุก rebuild"]
+  n4 --> n5["setState()<br/>วนกลับไป build() จนกว่า widget จะถูกลบ"]
+  n5 --> n4
+  n4 --> n6["didUpdateWidget()<br/>ทำงานเมื่อ parent ส่ง widget config ใหม่ (new props)"]
+  n6 --> n4
+  n4 --> n7["deactivate()<br/>ลบออกจาก tree (มักชั่วคราว)"]
+  n7 --> n8["dispose()<br/>teardown ถาวร: cancel timers, ปิด streams, dispose controllers"]`;
+
 
 `State<T>` class ของ Flutter เปิดเผย lifecycle methods หลายชุดที่ทำงานตามลำดับที่กำหนดไว้แน่นอน ถ้าคุณเคยใช้ React hooks หรือ class components ทุกอย่างมีเทียบเท่าโดยตรง เมื่อคุณเข้าใจ mapping คุณจะรู้ว่าต้องวาง logic แต่ละชิ้นไว้ที่ไหน
 
@@ -120,18 +133,6 @@ class _TimerWidgetState extends State<TimerWidget> {
 
 export const lcCode = `import 'dart:async';
 import 'package:flutter/material.dart';
-import Mermaid from '../../../../components/Mermaid.astro';
-
-export const lifecycleDiagram = `flowchart TD
-  n1["createState()"] --> n2["initState()<br/>mount: เริ่ม controllers, subscriptions, fetch data เริ่มต้น"]
-  n2 --> n3["didChangeDependencies()<br/>เรียกครั้งแรก แล้วเรียกอีกถ้า InheritedWidget เปลี่ยน"]
-  n3 --> n4["build()<br/>pure UI description; ทำงานทุก rebuild"]
-  n4 --> n5["setState()<br/>วนกลับไป build() จนกว่า widget จะถูกลบ"]
-  n5 --> n4
-  n4 --> n6["didUpdateWidget()<br/>ทำงานเมื่อ parent ส่ง widget config ใหม่ (new props)"]
-  n6 --> n4
-  n4 --> n7["deactivate()<br/>ลบออกจาก tree (มักชั่วคราว)"]
-  n7 --> n8["dispose()<br/>teardown ถาวร: cancel timers, ปิด streams, dispose controllers"]`;
 
 void main() => runApp(const MyApp());
 

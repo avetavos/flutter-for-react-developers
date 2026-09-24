@@ -8,6 +8,19 @@ import DartPad from '../../../../components/DartPad.tsx';
 import Diff from '../../../../components/Diff.astro';
 import Quiz from '../../../../components/Quiz.tsx';
 import ProgressTracker from '../../../../components/ProgressTracker.tsx';
+import Mermaid from '../../../../components/Mermaid.astro';
+
+export const lifecycleDiagram = `flowchart TD
+  n1["createState()"] --> n2["initState()<br/>mount: start controllers, subscriptions, fetch initial data"]
+  n2 --> n3["didChangeDependencies()<br/>first call, then fires again if InheritedWidget changes"]
+  n3 --> n4["build()<br/>pure UI description; runs every rebuild"]
+  n4 --> n5["setState()<br/>loops back to build() until the widget is removed"]
+  n5 --> n4
+  n4 --> n6["didUpdateWidget()<br/>fires when the parent passes new widget config (new props)"]
+  n6 --> n4
+  n4 --> n7["deactivate()<br/>tree removal (usually temporary)"]
+  n7 --> n8["dispose()<br/>permanent teardown: cancel timers, close streams, dispose controllers"]`;
+
 
 Flutter's `State<T>` class exposes a set of lifecycle methods that fire in a well-defined order. If you have used React hooks or class components, every single one of these has a direct equivalent. Once you internalize the mapping you will know exactly when to put each piece of logic.
 
@@ -120,18 +133,6 @@ class _TimerWidgetState extends State<TimerWidget> {
 
 export const lcCode = `import 'dart:async';
 import 'package:flutter/material.dart';
-import Mermaid from '../../../../components/Mermaid.astro';
-
-export const lifecycleDiagram = `flowchart TD
-  n1["createState()"] --> n2["initState()<br/>mount: start controllers, subscriptions, fetch initial data"]
-  n2 --> n3["didChangeDependencies()<br/>first call, then fires again if InheritedWidget changes"]
-  n3 --> n4["build()<br/>pure UI description; runs every rebuild"]
-  n4 --> n5["setState()<br/>loops back to build() until the widget is removed"]
-  n5 --> n4
-  n4 --> n6["didUpdateWidget()<br/>fires when the parent passes new widget config (new props)"]
-  n6 --> n4
-  n4 --> n7["deactivate()<br/>tree removal (usually temporary)"]
-  n7 --> n8["dispose()<br/>permanent teardown: cancel timers, close streams, dispose controllers"]`;
 
 void main() => runApp(const MyApp());
 

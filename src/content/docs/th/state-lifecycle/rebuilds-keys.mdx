@@ -175,8 +175,8 @@ class _KeyDemoState extends State<KeyDemo> {
           Expanded(
             child: ListView(
               children: _items.map((item) {
-                // ด้วย keys: Flutter match ColorBox กับ item เดิมหลัง shuffle
-                // ไม่มี keys: Flutter match ตาม position — สีจะ "กระโดด" ไปผิด items
+                // With keys: Flutter matches ColorBox to the same item after shuffle.
+                // Without keys: Flutter matches by position — colors "jump" to wrong items.
                 return ColorBox(
                   key: _useKeys ? ValueKey(item) : null,
                   label: item,
@@ -190,9 +190,9 @@ class _KeyDemoState extends State<KeyDemo> {
   }
 }
 
-// Stateful widget ที่เก็บ random color เป็น state ของตัวเอง
-// ไม่มี Key การ shuffle จะ reorder labels แต่ colors ยังอยู่ใน
-// position เดิม — classic key-less reconciliation bug
+// Stateful widget that holds its own random color as state.
+// Without a Key, shuffling reorders the labels but the colors stay
+// in their original positions — a classic key-less reconciliation bug.
 class ColorBox extends StatefulWidget {
   final String label;
   const ColorBox({super.key, required this.label});
@@ -207,7 +207,7 @@ class _ColorBoxState extends State<ColorBox> {
   @override
   void initState() {
     super.initState();
-    // สีจาก label hashCode — stable ต่อ State instance
+    // Random-ish color derived from label hashCode — stable per State instance
     final hue = (widget.label.hashCode % 360).abs().toDouble();
     _color = HSLColor.fromAHSL(1, hue, 0.6, 0.7).toColor();
   }

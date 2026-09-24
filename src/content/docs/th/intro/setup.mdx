@@ -100,12 +100,12 @@ dependencies:
   flutter:
     sdk: flutter
   dio: ^5.4.0          # HTTP client  (≈ axios)
-  go_router: ^13.0.0   # routing      (≈ react-router-dom)
+  go_router: ^18.0.0   # routing      (≈ react-router-dom)
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^6.0.0
 ```
 
 หลังแก้ `pubspec.yaml` รัน `flutter pub get` (≈ `npm install`) เพื่อ fetch packages จาก [pub.dev](https://pub.dev) — npm registry ของ Dart
@@ -137,10 +137,10 @@ flutter pub add dio
 ## รันบน device หรือ emulator
 
 ```bash
-# ดู device ที่ใช้ได้
+# list available devices
 flutter devices
 
-# รันบน device เฉพาะ
+# run on a specific device
 flutter run -d "iPhone 16"
 flutter run -d chrome
 flutter run -d macos

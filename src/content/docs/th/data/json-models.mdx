@@ -124,7 +124,6 @@ class MyApp extends StatelessWidget {
       title: 'JSON Models',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
-        useMaterial3: true,
       ),
       home: const UserModelScreen(),
     );
@@ -255,12 +254,12 @@ export const quizJsonModels = [
   {
     q: 'เครื่องมือ codegen ใดช่วยสร้าง fromJson/toJson อัตโนมัติใน Dart?',
     options: [
-      'dart:convert',
-      'retrofit',
-      'json_serializable หรือ freezed',
-      'dart2js',
+      'dart:convert และ dart:mirrors',
+      'json_serializable และ freezed',
+      'retrofit และ dio',
+      'provider และ riverpod',
     ],
-    answer: 2,
+    answer: 1,
   },
 ];
 

@@ -221,24 +221,24 @@ export const quizFb = [
     answer: 1,
   },
   {
-    q: 'ข้อดีหลักของ FutureBuilder เทียบกับ useEffect + useState คืออะไร?',
+    q: 'เมื่อ `Future` ที่ส่งให้ `FutureBuilder` จบการทำงานด้วย error จะเกิดอะไรขึ้น?',
     options: [
-      'FutureBuilder ทำงานได้เร็วกว่า',
-      'FutureBuilder จัดการ loading/error/data states แบบ declarative โดยไม่ต้องใช้ state variables หลายตัว',
-      'FutureBuilder รองรับ network requests ในตัว',
-      'FutureBuilder ไม่ต้องการ StatefulWidget',
+      'widget จะ throw unhandled exception',
+      'Flutter จะแสดงหน้าจอ error สีแดงให้อัตโนมัติ',
+      'snapshot.hasError จะเป็น true และ snapshot.error จะเก็บ error object ไว้',
+      'connectionState จะค้างอยู่ที่ waiting ตลอดไป',
     ],
-    answer: 1,
+    answer: 2,
   },
   {
-    q: 'StreamBuilder เหมาะสมกว่า FutureBuilder เมื่อใด?',
+    q: 'ควรใช้ `StreamBuilder` แทน `FutureBuilder` เมื่อใด?',
     options: [
-      'เมื่อต้องการ async operation เดียว',
-      'เมื่อข้อมูล emit ค่าหลายครั้งเมื่อเวลาผ่านไป (WebSocket, timer)',
-      'เมื่อต้องการ HTTP GET request',
-      'เมื่อต้องการ parse JSON',
+      'เมื่อ async operation คืนค่าเดียวหลังทำงานเสร็จ',
+      'เมื่อต้องการยกเลิก async operation ด้วยตนเอง',
+      'เมื่อแหล่งข้อมูล emit ค่าหลายครั้งตามเวลา (WebSocket, timer เป็นต้น)',
+      'เมื่อต้องการแสดง loading indicator',
     ],
-    answer: 1,
+    answer: 2,
   },
 ];
 

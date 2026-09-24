@@ -14,16 +14,16 @@ import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
 ```bash
 # Android
-flutter build apk              # Debug APK (สำหรับทดสอบ)
+flutter build apk              # Debug APK (for testing)
 flutter build apk --release    # Release APK (signed)
-flutter build appbundle        # Android App Bundle (แนะนำสำหรับ Play Store)
+flutter build appbundle        # Android App Bundle (Play Store preferred)
 
-# iOS (ต้องใช้ macOS + Xcode)
-flutter build ipa              # iOS Archive สำหรับ App Store / TestFlight
+# iOS (requires macOS + Xcode)
+flutter build ipa              # iOS Archive for App Store / TestFlight
 flutter build ipa --export-method ad-hoc  # Ad-hoc distribution
 
 # Web
-flutter build web              # Output ไปที่ build/web/
+flutter build web              # Output to build/web/
 flutter build web --release    # Minified production build
 
 # Desktop
@@ -66,14 +66,11 @@ iOS signing ต้องการ Apple Developer account, provisioning profile 
 ## Web deploy
 
 ```bash
-# Build
-flutter build web --release
-
-# Deploy ไปที่ Firebase Hosting
+# Firebase Hosting
 firebase deploy --only hosting
 
-# หรือลาก build/web/ ไปยัง Netlify deploy UI
-# หรือ push ไปยัง Vercel ผ่าน Vercel CLI
+# Or drag-drop build/web/ to Netlify's deploy UI
+# Or push to Vercel via the Vercel CLI
 ```
 
 output ของ `build/web/` คือ static site ปกติ — `index.html`, compiled JavaScript และ assets ที่ประกาศใน pubspec.yaml ไม่ต้องมี server

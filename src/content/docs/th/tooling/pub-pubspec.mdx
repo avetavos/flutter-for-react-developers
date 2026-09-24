@@ -54,19 +54,19 @@ Flutter ใช้ caret semantics เดียวกับ npm:
 ## เพิ่ม packages จาก CLI
 
 ```bash
-# เพิ่ม runtime dependency (เหมือน npm install http)
+# Add a runtime dependency (like npm install http)
 flutter pub add http
 
-# เพิ่ม dev dependency (เหมือน npm install --save-dev mocktail)
+# Add a dev dependency (like npm install --save-dev mocktail)
 flutter pub add --dev mocktail
 
-# ดึง dependencies ทั้งหมดหลังแก้ pubspec.yaml ด้วยมือ
+# Fetch all dependencies after editing pubspec.yaml manually
 flutter pub get
 
-# Upgrade dependencies ภายใน constraints
+# Upgrade dependencies within their constraints
 flutter pub upgrade
 
-# ดู outdated packages
+# Check for outdated packages
 flutter pub outdated
 ```
 
@@ -146,7 +146,7 @@ flutter:
 import 'package:flutter/material.dart';
 ```
 
-บรรทัดนี้ import มาจากตัว SDK เอง ไม่ได้มาจาก pub.dev นี่คือเหตุผลที่คุณไม่เคยเห็น Material อยู่ใน `dependencies` เลย Flutter 3.47 เริ่มเปลี่ยนเรื่องนี้ ตอนนี้ Material และ Cupertino ถูก ship เป็น package แยกบน pub.dev ด้วยในชื่อ `material_ui` และ `cupertino_ui` ทั้งคู่อยู่ที่ 1.0 และคุมเวอร์ชันแยกจาก SDK
+บรรทัดนี้ import มาจากตัว SDK เอง ไม่ได้มาจาก pub.dev นี่คือเหตุผลที่คุณไม่เคยเห็น Material อยู่ใน `dependencies` เลย Flutter 3.47 เริ่มเปลี่ยนเรื่องนี้ ตอนนี้ Material และ Cupertino ถูก ship เป็น package แยกบน pub.dev ด้วยในชื่อ `material_ui` และ `cupertino_ui` แต่ละตัวมีเวอร์ชันและ release cycle เป็นของตัวเอง แยกจาก SDK ([material_ui บน pub.dev](https://pub.dev/packages/material_ui))
 
 เหตุผลเบื้องหลังคุ้นเคยดีสำหรับ React developer มันคือความต่างระหว่าง widget library ที่ฝังมากับ runtime กับ library ที่คุณติดตั้งเองแบบ `@mui/material` การแยกออกมาทำให้ design system ปล่อย fix และ component ใหม่ได้โดยไม่ต้องรอ SDK release และทำให้แอปของคุณ pin version ได้
 

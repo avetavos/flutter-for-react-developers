@@ -95,7 +95,6 @@ class MyApp extends StatelessWidget {
       title: 'HTTP Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-        useMaterial3: true,
       ),
       home: const UserScreen(),
     );
@@ -218,23 +217,18 @@ export const quizFetching = [
     answer: 1,
   },
   {
-    q: 'ฟังก์ชันใดใน dart:convert ที่ใช้แปลง JSON string เป็น Dart object?',
+    q: '`jsonDecode(response.body)` จะคืนค่าอะไรโดยค่าเริ่มต้น เมื่อ JSON root เป็น object?',
     options: [
-      'JSON.parse()',
-      'jsonDecode()',
-      'parseJson()',
-      'fromJson()',
+      'อินสแตนซ์ของคลาส Dart ที่มี type ชัดเจน',
+      '`String`',
+      '`Map<String, dynamic>`',
+      '`List<dynamic>`',
     ],
-    answer: 1,
+    answer: 2,
   },
   {
-    q: 'ในตัวอย่าง DartPad เราจำลอง network call ด้วยวิธีใด?',
-    options: [
-      'ใช้ MockHttp package',
-      'ใช้ Future.delayed กับข้อมูล in-memory',
-      'ใช้ localhost server',
-      'ใช้ dart:io HttpClient',
-    ],
+    q: '`http.get` รับพารามิเตอร์ชนิดใดแทนที่จะเป็น string URL ธรรมดา?',
+    options: ['`String`', '`Uri`', '`URL`', '`HttpRequest`'],
     answer: 1,
   },
 ];

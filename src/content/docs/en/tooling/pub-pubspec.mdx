@@ -146,7 +146,7 @@ Every example in this course starts with the same line:
 import 'package:flutter/material.dart';
 ```
 
-That import comes from the SDK itself, not from pub.dev — which is why you never saw Material listed in `dependencies`. Flutter 3.47 starts changing that. Material and Cupertino now also ship as standalone pub.dev packages, `material_ui` and `cupertino_ui`, both at 1.0 and versioned independently of the SDK.
+That import comes from the SDK itself, not from pub.dev — which is why you never saw Material listed in `dependencies`. Flutter 3.47 starts changing that. Material and Cupertino now also ship as standalone pub.dev packages, `material_ui` and `cupertino_ui`, each versioned and released independently of the SDK ([material_ui on pub.dev](https://pub.dev/packages/material_ui)).
 
 For a React developer the motivation is familiar: it is the difference between a widget library baked into the runtime and one you install like `@mui/material`. Decoupling lets the design system ship fixes and new components without waiting for an SDK release, and lets your app pin a version.
 

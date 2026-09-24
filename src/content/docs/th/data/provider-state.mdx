@@ -235,14 +235,14 @@ export const quizProv = [
     answer: 1,
   },
   {
-    q: 'เราต้องเรียก notifyListeners() เมื่อใดใน ChangeNotifier?',
+    q: 'อะไรคือสิ่งที่เทียบเท่ากับคลาส `ChangeNotifier` ของ Flutter ใน React?',
     options: [
-      'ทุกครั้งที่ widget build',
-      'หลังจาก mutate state เพื่อบอก listeners ให้ rebuild',
-      'ใน initState เท่านั้น',
-      'ก่อน return ใน build method',
+      'plain object ที่ส่งให้ Context.Provider เป็น value prop',
+      'useRef ที่เก็บ mutable state',
+      'การจับคู่ useState หรือ useReducer ที่เก็บ state และเปิด update function ออกมา',
+      'Redux middleware',
     ],
-    answer: 1,
+    answer: 2,
   },
 ];
 

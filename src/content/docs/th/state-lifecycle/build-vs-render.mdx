@@ -102,8 +102,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Widget นี้นับว่า build() ถูกเรียกกี่ครั้ง —
-// แสดงให้เห็นว่า build() ราคาถูกและทำงานบ่อย
+// This widget counts how many times build() is called —
+// demonstrating that build() is cheap and runs frequently.
 class RebuildDemo extends StatefulWidget {
   const RebuildDemo({super.key});
 
@@ -113,12 +113,12 @@ class RebuildDemo extends StatefulWidget {
 
 class _RebuildDemoState extends State<RebuildDemo> {
   int _counter = 0;
-  int _buildCount = 0; // เพิ่มใน build เพื่อแสดงความถี่
+  int _buildCount = 0; // incremented inside build to show frequency
 
   @override
   Widget build(BuildContext context) {
-    // ติดตาม rebuild count — นี่คือ "side effect" ที่ยอมรับได้เพียงอย่างเดียว
-    // ใน build(): การเพิ่ม field แบบ synchronous เพื่อ demo
+    // Tracking rebuild count — this is the ONLY acceptable "side effect"
+    // in build(): a synchronous field increment for demo purposes.
     _buildCount++;
 
     return Padding(

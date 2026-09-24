@@ -188,18 +188,23 @@ class _FutureDemoState extends State<FutureDemo> {
 
 export const quizFuturesAsync = [
   {
-    q: 'Future ใน Dart เทียบเท่ากับอะไรใน JavaScript?',
-    options: ['callback', 'Promise', 'async function', 'event listener'],
-    answer: 1,
-  },
-  {
-    q: 'เมธอดใดใน Future ที่เทียบเท่ากับ .catch() ใน Promise?',
+    q: 'เมธอดใดใน Dart เทียบเท่ากับ `.catch()` ใน Promise chain ของ JavaScript?',
     options: ['.onError()', '.catchError()', '.handleError()', '.rescue()'],
     answer: 1,
   },
   {
-    q: 'ถ้า Future ล้มเหลวและไม่มีการจัดการ error จะเกิดอะไรขึ้น?',
-    options: ['Flutter crashes silently', 'The Future is ignored', 'An unhandled exception is thrown', 'The app restarts'],
+    q: 'Dart API ใดที่รัน Future หลายตัวพร้อมกันและ resolve เมื่อทุกตัวเสร็จสิ้น?',
+    options: [
+      'Future.any()',
+      'Future.microtask()',
+      'Future.wait()',
+      'Completer.waitAll()',
+    ],
+    answer: 2,
+  },
+  {
+    q: 'เมื่อต้องการห่อ API แบบ callback ให้คืนค่าเป็น Future ด้วยตนเอง ใช้คลาสใดใน Dart?',
+    options: ['FutureController', 'AsyncController', 'Completer', 'StreamController'],
     answer: 2,
   },
 ];

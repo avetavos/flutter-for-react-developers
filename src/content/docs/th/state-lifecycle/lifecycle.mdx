@@ -180,7 +180,7 @@ class _LifecycleDemoScreenState extends State<LifecycleDemoScreen> {
   }
 }
 
-// Widget ที่ demo lifecycle สมบูรณ์
+// The widget that demonstrates the full lifecycle
 class TimerWidget extends StatefulWidget {
   final String label;
   const TimerWidget({super.key, required this.label});
@@ -195,7 +195,7 @@ class _TimerWidgetState extends State<TimerWidget> {
   final List<String> _log = [];
 
   // ═══════════════ initState ═══════════════
-  // เทียบเท่า: useEffect(() => { start timer }, [])
+  // Equivalent to: useEffect(() => { start timer }, [])
   @override
   void initState() {
     super.initState();
@@ -211,16 +211,16 @@ class _TimerWidgetState extends State<TimerWidget> {
   }
 
   // ═══════════════ didChangeDependencies ═══════════════
-  // ทำงานหลัง initState และเมื่อ InheritedWidget เปลี่ยน
+  // Fires after initState and on InheritedWidget changes
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // ปลอดภัยที่จะเรียก Theme.of(context) ที่นี่
+    // Safe to call Theme.of(context) here
     _log.add('didChangeDependencies');
   }
 
   // ═══════════════ didUpdateWidget ═══════════════
-  // เทียบเท่า: useEffect(() => { sync }, [label])
+  // Equivalent to: useEffect(() => { sync }, [label])
   @override
   void didUpdateWidget(TimerWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -230,11 +230,11 @@ class _TimerWidgetState extends State<TimerWidget> {
   }
 
   // ═══════════════ dispose ═══════════════
-  // เทียบเท่า: useEffect(() => { return () => cleanup() }, [])
+  // Equivalent to: useEffect(() => { return () => cleanup() }, [])
   @override
   void dispose() {
     _timer?.cancel();
-    // หมายเหตุ: ไม่สามารถเรียก setState ที่นี่ได้ — widget กำลังถูก tear down
+    // Note: setState cannot be called here — widget is being torn down
     super.dispose();
   }
 

@@ -26,23 +26,7 @@ Flutter's `State<T>` class exposes a set of lifecycle methods that fire in a wel
 
 ## Step-by-step lifecycle flow
 
-```
-createState()
-    ↓
-initState()          ← mount: start controllers, subscriptions, fetch initial data
-    ↓
-didChangeDependencies()  ← first call, then fires again if InheritedWidget changes
-    ↓
-build()              ← pure UI description; runs every rebuild
-    ↑  ↓
-setState()           ← loops back to build() until widget is removed
-    ↓
-didUpdateWidget()    ← fires when parent passes new widget config (new props)
-    ↓
-deactivate()         ← tree removal (usually temporary)
-    ↓
-dispose()            ← permanent teardown: cancel timers, close streams, dispose controllers
-```
+<Mermaid code={lifecycleDiagram} title="StatefulWidget lifecycle" />
 
 ## Side-by-side comparison
 
@@ -136,6 +120,18 @@ class _TimerWidgetState extends State<TimerWidget> {
 
 export const lcCode = `import 'dart:async';
 import 'package:flutter/material.dart';
+import Mermaid from '../../../../components/Mermaid.astro';
+
+export const lifecycleDiagram = `flowchart TD
+  n1["createState()"] --> n2["initState()<br/>mount: start controllers, subscriptions, fetch initial data"]
+  n2 --> n3["didChangeDependencies()<br/>first call, then fires again if InheritedWidget changes"]
+  n3 --> n4["build()<br/>pure UI description; runs every rebuild"]
+  n4 --> n5["setState()<br/>loops back to build() until the widget is removed"]
+  n5 --> n4
+  n4 --> n6["didUpdateWidget()<br/>fires when the parent passes new widget config (new props)"]
+  n6 --> n4
+  n4 --> n7["deactivate()<br/>tree removal (usually temporary)"]
+  n7 --> n8["dispose()<br/>permanent teardown: cancel timers, close streams, dispose controllers"]`;
 
 void main() => runApp(const MyApp());
 

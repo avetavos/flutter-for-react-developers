@@ -26,23 +26,7 @@ import ProgressTracker from '../../../../components/ProgressTracker.tsx';
 
 ## ขั้นตอน lifecycle ทีละขั้น
 
-```
-createState()
-    ↓
-initState()          ← mount: เริ่ม controllers, subscriptions, fetch data เริ่มต้น
-    ↓
-didChangeDependencies()  ← เรียกครั้งแรก แล้วเรียกอีกถ้า InheritedWidget เปลี่ยน
-    ↓
-build()              ← pure UI description; ทำงานทุก rebuild
-    ↑  ↓
-setState()           ← วนกลับไป build() จนกว่า widget จะถูกลบ
-    ↓
-didUpdateWidget()    ← ทำงานเมื่อ parent ส่ง widget config ใหม่ (new props)
-    ↓
-deactivate()         ← ลบออกจาก tree (มักชั่วคราว)
-    ↓
-dispose()            ← teardown ถาวร: cancel timers, ปิด streams, dispose controllers
-```
+<Mermaid code={lifecycleDiagram} title="วงจรชีวิตของ StatefulWidget" />
 
 ## การเปรียบเทียบแบบ side-by-side
 
@@ -136,6 +120,18 @@ class _TimerWidgetState extends State<TimerWidget> {
 
 export const lcCode = `import 'dart:async';
 import 'package:flutter/material.dart';
+import Mermaid from '../../../../components/Mermaid.astro';
+
+export const lifecycleDiagram = `flowchart TD
+  n1["createState()"] --> n2["initState()<br/>mount: เริ่ม controllers, subscriptions, fetch data เริ่มต้น"]
+  n2 --> n3["didChangeDependencies()<br/>เรียกครั้งแรก แล้วเรียกอีกถ้า InheritedWidget เปลี่ยน"]
+  n3 --> n4["build()<br/>pure UI description; ทำงานทุก rebuild"]
+  n4 --> n5["setState()<br/>วนกลับไป build() จนกว่า widget จะถูกลบ"]
+  n5 --> n4
+  n4 --> n6["didUpdateWidget()<br/>ทำงานเมื่อ parent ส่ง widget config ใหม่ (new props)"]
+  n6 --> n4
+  n4 --> n7["deactivate()<br/>ลบออกจาก tree (มักชั่วคราว)"]
+  n7 --> n8["dispose()<br/>teardown ถาวร: cancel timers, ปิด streams, dispose controllers"]`;
 
 void main() => runApp(const MyApp());
 
